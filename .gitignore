@@ -1,0 +1,65 @@
+# =========================== 
+# Default Collab Ignore Rules 
+# =========================== 
+
+# OS Generated 
+# ============ 
+.DS_Store 
+._* 
+.Spotlight-V100 
+.Trashes
+ehthumbs.db 
+[Tt]humbs.db 
+[Dd]esktop.ini 
+
+# Visual Studio / MonoDevelop generated 
+# ===================================== 
+[Ee]xported[Oo]bj/ 
+*.userprefs 
+*.csproj 
+*.pidb 
+*.suo 
+*.sln 
+*.user 
+*.unityproj 
+*.booproj 
+*.vsidx
+
+# Unity generated 
+# =============== 
+/[Tt]emp/ 
+[Oo]bj/ 
+[Bb]uild 
+/[Ll]ibrary/ 
+sysinfo.txt 
+*.stackdump
+/Logs/
+
+#Builds
+#===============
+
+/Build/
+/Builds/
+/App/
+/Others/
+*.blend1
+
+#FMOD
+#===============
+# Never ignore DLLs in the FMOD subfolder.
+!/[Aa]ssets/Plugins/FMOD/**/lib/*
+
+# Don't ignore images and gizmos used by FMOD in the Unity Editor.
+!/[Aa]ssets/Gizmos/FMOD/*
+!/[Aa]ssets/Editor Default Resources/FMOD/*
+
+# Ignore the Cache folder since it is updated locally.
+/[Aa]ssets/Plugins/FMOD/Cache/*
+
+# Ignore bank files in the StreamingAssets folder.
+/[Aa]ssets/StreamingAssets/**/*.bank
+/[Aa]ssets/StreamingAssets/**/*.bank.meta
+
+# If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
+# Log files can be ignored.
+fmod_editor.log
