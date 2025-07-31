@@ -5,7 +5,11 @@ using UnityEngine;
 public interface IMoveable
 {
     float MoveTime { get; }
+    Direction CurrentDirection { get; }
     event Action<Direction> onMove;
+    event Action<Direction> onLook;
+
+    void LookDirection(Direction direction);
 }
 
 public class PlayerMovement : MonoBehaviour, IMoveable
@@ -16,10 +20,13 @@ public class PlayerMovement : MonoBehaviour, IMoveable
 
     [SerializeField] float moveTime;
     public float MoveTime => moveTime;
+    Direction currentDirection;
+    public Direction CurrentDirection => currentDirection;
 
     const float MIN_INPUT_MOVEMENT = 0.5f;
 
     public event Action<Direction> onMove;
+    public event Action<Direction> onLook;
 
     void Start()
     {
@@ -48,14 +55,27 @@ public class PlayerMovement : MonoBehaviour, IMoveable
         }
     }
 
+    public void LookDirection(Direction direction)
+    {
+        currentDirection = direction;
+        onLook?.Invoke(direction);
+    }
+
     public void TryMove(Direction direction)
     {
+        if (PlayerState.Instance.freezeInputsState.IsOn)
+            return;
+
         if (isMoving)
             return;
 
-        if (!GameGrid.IsWalkable(gridPos + direction.ToVector()))
-            return;
+        LookDirection(direction);
 
+        //Check if possible to move there
+        if (!GameGrid.IsWalkable(gridPos + direction.ToVector()))
+        {
+            return;
+        }
         Vector2Int nextPos = gridPos + direction.ToVector();
         StartCoroutine(MoveAnim(gridPos, nextPos));
         onMove?.Invoke(direction);

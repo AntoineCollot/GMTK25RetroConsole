@@ -45,6 +45,19 @@ public static class GameGrid
         return Direction.Down;
     }
 
+    public static Direction ToDirection(this Vector2Int v)
+    {
+        if (Mathf.Abs(v.x) > Mathf.Abs(v.y))
+        {
+            if (v.x >= 0)
+                return Direction.Right;
+            return Direction.Left;
+        }
+        if (v.y >= 0)
+            return Direction.Top;
+        return Direction.Down;
+    }
+
     public static bool IsWalkable(in Vector2Int gridPos)
     {
         Collider2D col = Physics2D.OverlapPoint(GridToWorldPos(in gridPos), obstacleLayers);

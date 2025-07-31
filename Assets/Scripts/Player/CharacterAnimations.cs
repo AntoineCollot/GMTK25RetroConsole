@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,20 +14,32 @@ public class CharacterAnimations : MonoBehaviour
     IMoveable moveable;
     SpriteRenderer spriteRend;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         spriteRend = GetComponent<SpriteRenderer>();
         idleDown = spriteRend.sprite;
         moveable = GetComponentInParent<IMoveable>();
-        if(moveable != null)
+        if (moveable != null)
+        {
+            moveable.onLook += OnLook;
             moveable.onMove += OnMove;
+        }
+
+        LookDirection(moveable.CurrentDirection);
     }
 
     private void OnDestroy()
     {
         if (moveable != null)
+        {
+            moveable.onLook -= OnLook;
             moveable.onMove -= OnMove;
+        }
+    }
+
+    private void OnLook(Direction direction)
+    {
+        LookDirection(direction);
     }
 
     private void OnMove(Direction direction)
@@ -34,10 +47,9 @@ public class CharacterAnimations : MonoBehaviour
         StartCoroutine(MoveAnim(direction, moveable.MoveTime));
     }
 
-    IEnumerator MoveAnim(Direction direction, float duration)
+    public void LookDirection(Direction direction)
     {
         spriteRend.flipX = direction == Direction.Left;
-
         switch (direction)
         {
             case Direction.Top:
@@ -53,6 +65,11 @@ public class CharacterAnimations : MonoBehaviour
                 spriteRend.sprite = idleDown;
                 break;
         }
+    }
+
+    IEnumerator MoveAnim(Direction direction, float duration)
+    {
+        LookDirection(direction);
 
         yield return new WaitForSeconds(duration * 0.25f);
 
@@ -73,20 +90,6 @@ public class CharacterAnimations : MonoBehaviour
 
         yield return new WaitForSeconds(duration * 0.5f);
 
-        switch (direction)
-        {
-            case Direction.Top:
-            default:
-                spriteRend.sprite = idleUp;
-                break;
-            case Direction.Right:
-            case Direction.Left:
-                spriteRend.sprite = idleRight;
-                spriteRend.sprite = idleRight;
-                break;
-            case Direction.Down:
-                spriteRend.sprite = idleDown;
-                break;
-        }
+        LookDirection(direction);
     }
 }

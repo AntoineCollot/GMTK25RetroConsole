@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|d:\\documents\\programmation\\unity\\gmtkretroconsole\\assets\\scripts\\level\\gamegrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\level\\gamegrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|d:\\documents\\programmation\\unity\\gmtkretroconsole\\assets\\scripts\\entities\\interacttalk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\entities\\interacttalk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\assets\\scripts\\player\\characteranimations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\characteranimations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\assets\\scripts\\game\\dialoguepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\dialoguepanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|d:\\documents\\programmation\\unity\\gmtkretroconsole\\assets\\scripts\\entities\\interactableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\entities\\interactableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\assets\\scripts\\level\\gamegrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\level\\gamegrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Rendering\\Blit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Rendering\\Blit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\assets\\scripts\\player\\playerstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\assets\\scripts\\player\\characteranimations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C1895CF-F506-9E13-B7FB-DC9BBD354EA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\characteranimations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,55 +38,94 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CharacterAnimations.cs",
-              "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Player\\CharacterAnimations.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\CharacterAnimations.cs",
-              "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Player\\CharacterAnimations.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player\\CharacterAnimations.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAADEAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T14:56:15.962Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GameGrid.cs",
-              "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Level\\GameGrid.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Level\\GameGrid.cs",
-              "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Level\\GameGrid.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Level\\GameGrid.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAAAD8AAAAYAAAA",
+              "Title": "InteractTalk.cs",
+              "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Entities\\InteractTalk.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Entities\\InteractTalk.cs",
+              "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Entities\\InteractTalk.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Entities\\InteractTalk.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T14:00:12.827Z",
+              "WhenOpened": "2025-07-31T18:57:20.966Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "InteractableEntity.cs",
+              "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Entities\\InteractableEntity.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Entities\\InteractableEntity.cs",
+              "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Entities\\InteractableEntity.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Entities\\InteractableEntity.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAB0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T18:44:09.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlayerState.cs",
+              "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Player\\PlayerState.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerState.cs",
+              "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Player\\PlayerState.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerState.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T17:14:06.31Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DialoguePanel.cs",
+              "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Game\\DialoguePanel.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\DialoguePanel.cs",
+              "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Game\\DialoguePanel.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\DialoguePanel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T16:24:42.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CharacterAnimations.cs",
+              "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Player\\CharacterAnimations.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\CharacterAnimations.cs",
+              "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Player\\CharacterAnimations.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\CharacterAnimations.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T14:56:15.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GameGrid.cs",
+              "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Level\\GameGrid.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level\\GameGrid.cs",
+              "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Level\\GameGrid.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level\\GameGrid.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAIwDcAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T14:00:12.827Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Player\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerMovement.cs",
               "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Player\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerMovement.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAAADwAAAAiAAAA",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAAEcAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-31T13:48:37.948Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Blit.cs",
-              "DocumentMoniker": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Rendering\\Blit.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Rendering\\Blit.cs",
-              "ToolTip": "D:\\Documents\\Programmation\\Unity\\GMTKRetroConsole\\Assets\\Scripts\\Rendering\\Blit.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Rendering\\Blit.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T23:12:01.207Z"
             }
           ]
         }
