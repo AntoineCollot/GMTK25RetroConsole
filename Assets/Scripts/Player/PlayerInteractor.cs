@@ -28,9 +28,15 @@ public class PlayerInteractor : MonoBehaviour
 
     private void OnAPerformed(InputAction.CallbackContext context)
     {
-        if (PlayerState.Instance.freezeInputsState.IsOn)
+        if (PlayerState.Instance.AreInputsFrozen)
             return;
 
-        GameGrid.TryGetObjectInFront(playerMovement.CurrentDirection, playerMovement.gridPos, out GameObject candidate);
+        if (GameGrid.TryGetObjectInFront(playerMovement.CurrentDirection, playerMovement.gridPos, out GameObject candidate))
+        {
+            if (candidate.TryGetComponent(out InteractableEntity interactable))
+            {
+                interactable.PlayerInteract(playerMovement.gridPos);   
+            }
+        }
     }
 }

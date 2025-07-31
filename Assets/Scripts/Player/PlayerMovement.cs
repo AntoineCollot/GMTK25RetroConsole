@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour, IMoveable
 
     public event Action<Direction> onMove;
     public event Action<Direction> onLook;
+    public event Action<Vector2Int> onMovementFinished;
 
     void Start()
     {
@@ -63,7 +64,7 @@ public class PlayerMovement : MonoBehaviour, IMoveable
 
     public void TryMove(Direction direction)
     {
-        if (PlayerState.Instance.freezeInputsState.IsOn)
+        if (PlayerState.Instance.AreInputsFrozen)
             return;
 
         if (isMoving)
@@ -100,5 +101,6 @@ public class PlayerMovement : MonoBehaviour, IMoveable
 
         gridPos = to;
         isMoving = false;
+        onMovementFinished?.Invoke(to);
     }
 }

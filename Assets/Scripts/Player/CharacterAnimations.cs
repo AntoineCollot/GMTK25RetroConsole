@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterAnimations : MonoBehaviour
 {
-    Sprite idleDown;
+    [SerializeField] Sprite idleDown;
     [SerializeField] Sprite moveDown;
     [SerializeField] Sprite idleRight;
     [SerializeField] Sprite moveRight;
@@ -14,18 +14,19 @@ public class CharacterAnimations : MonoBehaviour
     IMoveable moveable;
     SpriteRenderer spriteRend;
 
+    const float ATTACK_MOVE_TIME = 0.1f;
+    const float ATTACK_FREEZE_TIME = 0.5f;
+
     void Start()
     {
         spriteRend = GetComponent<SpriteRenderer>();
-        idleDown = spriteRend.sprite;
         moveable = GetComponentInParent<IMoveable>();
         if (moveable != null)
         {
             moveable.onLook += OnLook;
             moveable.onMove += OnMove;
+            LookDirection(moveable.CurrentDirection);
         }
-
-        LookDirection(moveable.CurrentDirection);
     }
 
     private void OnDestroy()
@@ -47,6 +48,15 @@ public class CharacterAnimations : MonoBehaviour
         StartCoroutine(MoveAnim(direction, moveable.MoveTime));
     }
 
+#if UNITY_EDITOR
+    public void EditorLookDirection(Direction direction)
+    {
+        if (spriteRend == null)
+            spriteRend = GetComponent<SpriteRenderer>();
+        LookDirection(direction);
+    }
+#endif
+
     public void LookDirection(Direction direction)
     {
         spriteRend.flipX = direction == Direction.Left;
@@ -67,12 +77,8 @@ public class CharacterAnimations : MonoBehaviour
         }
     }
 
-    IEnumerator MoveAnim(Direction direction, float duration)
+    void DisplayMoveSprite(Direction direction)
     {
-        LookDirection(direction);
-
-        yield return new WaitForSeconds(duration * 0.25f);
-
         switch (direction)
         {
             case Direction.Top:
@@ -87,9 +93,49 @@ public class CharacterAnimations : MonoBehaviour
                 spriteRend.sprite = moveDown;
                 break;
         }
+    }
 
-        yield return new WaitForSeconds(duration * 0.5f);
+    IEnumerator MoveAnim(Direction direction, float duration)
+    {
+        LookDirection(direction);
+
+        yield return new WaitForSeconds(duration * 0.25f);
+
+        DisplayMoveSprite(direction);
+
+         yield return new WaitForSeconds(duration * 0.5f);
 
         LookDirection(direction);
+    }
+
+    public void Attack()
+    {
+        StartCoroutine(AttackAnim());
+    }
+
+    IEnumerator AttackAnim()
+    {
+        float t = 0;
+        Vector3 direction = moveable.CurrentDirection.ToVector3();
+        while (t<1)
+        {
+            t += Time.deltaTime / ATTACK_MOVE_TIME;
+
+            transform.localPosition = Vector3.Lerp(Vector3.zero, direction, t);
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(ATTACK_FREEZE_TIME);
+
+        t = 0;
+        while (t < 1)
+        {
+            t += Time.deltaTime / ATTACK_MOVE_TIME;
+
+            transform.localPosition = Vector3.Lerp(Vector3.zero, direction, 1-t);
+
+            yield return null;
+        }
     }
 }

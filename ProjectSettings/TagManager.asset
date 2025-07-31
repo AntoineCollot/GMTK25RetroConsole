@@ -15,7 +15,7 @@ TagManager:
   - Player
   - Entities
   - RealWorld
-  - Font
+  - FX
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 908182505
+    locked: 0
+  - name: Duel
+    uniqueID: 4103781863
     locked: 0
   - name: FX
     uniqueID: 3809748359

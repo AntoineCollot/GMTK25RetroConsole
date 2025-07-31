@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class DialoguePanel : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] GameObject panel;
-
-    [SerializeField] float characterTime;
-    TextMeshProUGUI text;
-
     [SerializeField] GameObject nextIcon;
+    TextMeshProUGUI text;
     InputMap inputs;
     CompositeStateToken freezePlayerToken;
+
+    [Header("Settings")]
+    [SerializeField] float characterTime;
 
     Queue<string> linesToDisplay;
     bool isOpen;
@@ -22,7 +23,7 @@ public class DialoguePanel : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        text = GetComponent<TextMeshProUGUI>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
         linesToDisplay = new();
     }
 
@@ -33,6 +34,8 @@ public class DialoguePanel : MonoBehaviour
 
         freezePlayerToken = new CompositeStateToken();
         PlayerState.Instance.freezeInputsState.Add(freezePlayerToken);
+
+        ForceClose();
     }
 
     private void OnDestroy()
@@ -57,6 +60,7 @@ public class DialoguePanel : MonoBehaviour
         {
             linesToDisplay.Enqueue(line);
         }
+        DisplayNext();
     }
 
     void DisplayNext()
@@ -72,7 +76,7 @@ public class DialoguePanel : MonoBehaviour
         int charCount = str.Length;
         float elapsedTime = 0;
         float nextCharacterTime = characterTime;
-        for (int i = 0; i < charCount; i++)
+        for (int i = 0; i <= charCount; i++)
         {
             text.maxVisibleCharacters = i;
             nextCharacterTime += characterTime;
@@ -115,9 +119,15 @@ public class DialoguePanel : MonoBehaviour
     {
         if (!isOpen)
             return;
+        ForceClose();
+    }
+
+    void ForceClose()
+    {
         isOpen = false;
         linesToDisplay.Clear();
         panel.SetActive(false);
         freezePlayerToken.SetOn(false);
+        PlayerState.Instance.FreezeInputsForCurrentFrame();
     }
 }

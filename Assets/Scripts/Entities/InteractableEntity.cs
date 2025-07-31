@@ -13,7 +13,7 @@ public class InteractableEntity : MonoBehaviour
         interactables = GetComponents<IInteractable>();
     }
 
-    public void OnInteract(Vector2Int fromPos)
+    public void PlayerInteract(Vector2Int fromPos)
     {
         if(CanBeInteractedWith)
         {
