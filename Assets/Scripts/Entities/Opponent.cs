@@ -1,13 +1,20 @@
 using UnityEngine;
 
-public class Opponent : MonoBehaviour
+public class Opponent : MonoBehaviour, IDualable
 {
     [Header("Components")]
     [SerializeField] GameObject detectFX;
-    [SerializeField] SpriteRenderer spriteRenderer;
+    CharacterAnimations characterAnimations;
 
     [Header("Settings")]
     [SerializeField] float detectFreezeTime = 1;
+
+    [Header("Stats")]
+    [SerializeField] int baseHP = 3;
+    int currentHP;
+    public int CurrentHP => currentHP;
+    [SerializeField] int strength = 1;
+    public int Strength => strength;
 
     CompositeStateToken freezePlayerToken;
 
@@ -18,6 +25,9 @@ public class Opponent : MonoBehaviour
     void Start()
     {
         freezePlayerToken = new CompositeStateToken();
+        characterAnimations = GetComponentInChildren<CharacterAnimations>();
+
+        currentHP = baseHP;
     }
 
     private void OnDestroy()
@@ -26,7 +36,7 @@ public class Opponent : MonoBehaviour
 
     public void OnPlayerDetected(Vector2Int playerPosition)
     {
-        PlayerState.Instance.freezeInputsState.Add(freezePlayerToken);
+        PlayerState.Instance.freezeGameplayInputState.Add(freezePlayerToken);
         freezePlayerToken.SetOn(true);
         detectFX.SetActive(true);
 
@@ -36,24 +46,44 @@ public class Opponent : MonoBehaviour
     void StartDuel()
     {
         detectFX.SetActive(false);
-        SetSortingLayerAsDuel();
+        characterAnimations.SetSortingLayerAsDuel();
         DuelManager.Instance.StartDuel(this);
     }
 
     public void OnDuelFinished()
     {
         freezePlayerToken.SetOn(false);
-        PlayerState.Instance.freezeInputsState.Remove(freezePlayerToken);
-        ResetSortingLayer();
+        PlayerState.Instance.freezeGameplayInputState.Remove(freezePlayerToken);
+        characterAnimations.ResetSortingLayer();
+
+        if (currentHP < 0)
+            Die();
     }
 
-    void SetSortingLayerAsDuel()
+    public void Attack()
     {
-        spriteRenderer.sortingLayerName = "Duel";
+        characterAnimations.Attack();
     }
 
-    void ResetSortingLayer()
+    public void TakeDamages(int damage, out bool die)
     {
-        spriteRenderer.sortingLayerName = "Characters";
+        currentHP -= damage;
+        die = false;
+
+        if (currentHP <= 0)
+            die = true;
     }
+
+    public void Die()
+    {
+
+    }
+}
+
+public interface IDualable
+{
+    int CurrentHP { get; }
+    int Strength { get; }
+
+    void TakeDamages(int damage, out bool die);
 }

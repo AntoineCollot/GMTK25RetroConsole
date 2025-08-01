@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour, IMoveable
 
     public void TryMove(Direction direction)
     {
-        if (PlayerState.Instance.AreInputsFrozen)
+        if (PlayerState.Instance.AreGameplayInputsFrozen)
             return;
 
         if (isMoving)

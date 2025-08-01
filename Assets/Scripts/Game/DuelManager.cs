@@ -6,12 +6,14 @@ public class DuelManager : MonoBehaviour
     [SerializeField] SpriteRenderer duelBackground;
 
     public bool isInDuel { get; private set; }
-    public Opponent currentOpponent {  get; private set; }
+    public Opponent currentOpponent { get; private set; }
     PlayerMovement playerMovement;
+    CharacterAnimations playerAnimations;
 
     public static DuelManager Instance;
 
     const float BACKGROUND_GROW_TIME = 1.5f;
+    const float ATTACK_INTERVAL_TIME = 1.5f;
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class DuelManager : MonoBehaviour
     private void Start()
     {
         playerMovement = PlayerState.Instance.GetComponent<PlayerMovement>();
+        playerAnimations = PlayerState.Instance.GetComponentInChildren<CharacterAnimations>();
     }
 
     public void StartDuel(Opponent opponent)
@@ -56,6 +59,33 @@ public class DuelManager : MonoBehaviour
             duelBackground.sharedMaterial.SetFloat("_Threshold", t);
             yield return null;
         }
+
+        StartCoroutine(Fight());
+    }
+
+    IEnumerator Fight()
+    {
+        bool someoneDied = false;
+        int damages;
+        while (!someoneDied)
+        {
+            yield return new WaitForSeconds(ATTACK_INTERVAL_TIME);
+            playerAnimations.Attack();
+            damages = PlayerState.Instance.Strength;
+            currentOpponent.TakeDamages(damages, out someoneDied);
+            ScreenShakeSimple.Instance.Shake( damages* 0.25f);
+
+            if (!someoneDied)
+            {
+                yield return new WaitForSeconds(ATTACK_INTERVAL_TIME);
+                currentOpponent.Attack();
+                damages = currentOpponent.Strength;
+                PlayerState.Instance.TakeDamages(damages, out someoneDied);
+                ScreenShakeSimple.Instance.Shake(damages * 0.25f);
+            }
+        }
+
+        yield return new WaitForSeconds(ATTACK_INTERVAL_TIME);
 
         EndDuel();
     }

@@ -33,7 +33,7 @@ public class DialoguePanel : MonoBehaviour
         inputs.Enable();
 
         freezePlayerToken = new CompositeStateToken();
-        PlayerState.Instance.freezeInputsState.Add(freezePlayerToken);
+        PlayerState.Instance.freezeGameplayInputState.Add(freezePlayerToken);
 
         ForceClose();
     }
@@ -49,7 +49,7 @@ public class DialoguePanel : MonoBehaviour
 
         if (PlayerState.Instance != null)
         {
-            PlayerState.Instance.freezeInputsState.Remove(freezePlayerToken);
+            PlayerState.Instance.freezeGameplayInputState.Remove(freezePlayerToken);
         }
     }
 

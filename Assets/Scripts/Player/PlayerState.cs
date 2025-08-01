@@ -7,24 +7,37 @@ using System;
 using UnityEditor;
 #endif
 
-public class PlayerState : MonoBehaviour
+public class PlayerState : MonoBehaviour, IDualable
 {
     public static PlayerState Instance;
-    public CompositeState freezeInputsState;
+    public CompositeState freezeGameplayInputState;
     Rigidbody body;
 
     int freezeInputFrame;
-    public bool AreInputsFrozen => freezeInputsState.IsOn || Time.frameCount<=freezeInputFrame;
+    public bool AreGameplayInputsFrozen => freezeGameplayInputState.IsOn || Time.frameCount<=freezeInputFrame;
+
+    [Header("Duel")]
+    [SerializeField] int baseHP = 5;
+    [SerializeField] int baseStrength = 1;
+    int currentHP;
+    public int CurrentHP => currentHP;
+    public int Strength => baseStrength;
 
     PlayerMovement movement;
     public event Action<Vector2Int> onPlayerPositionChanged;
 
     private void Awake()
     {
-        freezeInputsState = new CompositeState();
+        freezeGameplayInputState = new CompositeState();
         movement = GetComponent<PlayerMovement>();
 
         Instance = this;
+    }
+
+    private void Start()
+    {
+        movement.onMovementFinished += OnMovementFinished;
+        currentHP = baseHP;
     }
 
     private void OnDestroy()
@@ -33,11 +46,6 @@ public class PlayerState : MonoBehaviour
         {
             movement.onMovementFinished -= OnMovementFinished;
         }
-    }
-
-    private void Start()
-    {
-        movement.onMovementFinished += OnMovementFinished;
     }
 
     private void OnMovementFinished(Vector2Int pos)
@@ -53,6 +61,23 @@ public class PlayerState : MonoBehaviour
     {
         freezeInputFrame = Time.frameCount+count;
     }
+
+    public void TakeDamages(int damage, out bool die)
+    {
+        currentHP -= damage;
+        die = false;
+
+        if (currentHP <= 0)
+        {
+            die = true;
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player Died");
+    }
 }
 
 #if UNITY_EDITOR
@@ -65,8 +90,8 @@ public class PlayerStateEditor : Editor
 
         PlayerState behaviour = target as PlayerState;
 
-        if (behaviour.freezeInputsState != null)
-            EditorGUILayout.Toggle("Freeze Inputs", behaviour.freezeInputsState.IsOn);
+        if (behaviour.freezeGameplayInputState != null)
+            EditorGUILayout.Toggle("Freeze Inputs", behaviour.freezeGameplayInputState.IsOn);
 
         // Write back changed values
         // This also handles all marking dirty, saving, undo/redo etc

@@ -12,15 +12,19 @@ public class CharacterAnimations : MonoBehaviour
     [SerializeField] Sprite moveUp;
 
     IMoveable moveable;
-    SpriteRenderer spriteRend;
+    public SpriteRenderer spriteRend { get; private set; }
 
-    const float ATTACK_MOVE_TIME = 0.1f;
+    const float ATTACK_MOVE_TIME = 0.05f;
     const float ATTACK_FREEZE_TIME = 0.5f;
 
-    void Start()
+    private void Awake()
     {
         spriteRend = GetComponent<SpriteRenderer>();
         moveable = GetComponentInParent<IMoveable>();
+    }
+
+    void Start()
+    {
         if (moveable != null)
         {
             moveable.onLook += OnLook;
@@ -103,7 +107,7 @@ public class CharacterAnimations : MonoBehaviour
 
         DisplayMoveSprite(direction);
 
-         yield return new WaitForSeconds(duration * 0.5f);
+        yield return new WaitForSeconds(duration * 0.5f);
 
         LookDirection(direction);
     }
@@ -117,11 +121,11 @@ public class CharacterAnimations : MonoBehaviour
     {
         float t = 0;
         Vector3 direction = moveable.CurrentDirection.ToVector3();
-        while (t<1)
+        while (t < 1)
         {
             t += Time.deltaTime / ATTACK_MOVE_TIME;
 
-            transform.localPosition = Vector3.Lerp(Vector3.zero, direction, t);
+            transform.localPosition = Vector3.Lerp(Vector3.zero, direction * 0.5f, t);
 
             yield return null;
         }
@@ -133,9 +137,19 @@ public class CharacterAnimations : MonoBehaviour
         {
             t += Time.deltaTime / ATTACK_MOVE_TIME;
 
-            transform.localPosition = Vector3.Lerp(Vector3.zero, direction, 1-t);
+            transform.localPosition = Vector3.Lerp(Vector3.zero, direction * 0.5f, 1 - t);
 
             yield return null;
         }
+    }
+
+    public void SetSortingLayerAsDuel()
+    {
+        spriteRend.sortingLayerName = "Duel";
+    }
+
+    public void ResetSortingLayer()
+    {
+        spriteRend.sortingLayerName = "Characters";
     }
 }

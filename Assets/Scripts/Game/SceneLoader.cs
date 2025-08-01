@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public static class SceneLoader
 {
-    bool isLoading = false;
+    static bool isLoading = false;
 
-    public void LoadNext()
+    const string RETRO_SCENE_NAME = "RetroGame";
+    const string MAIN_SCENE_NAME = "MainScene";
+
+    static public void LoadNext()
     {
         if (isLoading)
             return;
@@ -16,21 +19,27 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void Retry()
+    static public void LoadMenu()
     {
         if (isLoading)
             return;
 
         isLoading = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void LoadMenu()
+    static public void LoadRetroGame()
     {
-        if (isLoading)
-            return;
+        SceneManager.LoadScene(RETRO_SCENE_NAME, LoadSceneMode.Additive);
+    }
 
-        isLoading = true;
-        SceneManager.LoadScene(1);
+    static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        isLoading = false;
+
+        if (scene.name == MAIN_SCENE_NAME)
+            LoadRetroGame();
     }
 }
