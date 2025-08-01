@@ -126,6 +126,15 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleOnOff"",
+                    ""type"": ""Button"",
+                    ""id"": ""9cd660a5-b53e-42f7-8731-d1ad94311cf9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -348,6 +357,28 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ac9de15-fd40-459b-ae6a-89865a8e69da"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleOnOff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9f2ae29-6579-49f8-882e-38f7de28e6ae"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleOnOff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -360,6 +391,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         m_Gameplay_A = m_Gameplay.FindAction("A", throwIfNotFound: true);
         m_Gameplay_B = m_Gameplay.FindAction("B", throwIfNotFound: true);
         m_Gameplay_Start = m_Gameplay.FindAction("Start", throwIfNotFound: true);
+        m_Gameplay_ToggleOnOff = m_Gameplay.FindAction("ToggleOnOff", throwIfNotFound: true);
     }
 
     ~@InputMap()
@@ -444,6 +476,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_A;
     private readonly InputAction m_Gameplay_B;
     private readonly InputAction m_Gameplay_Start;
+    private readonly InputAction m_Gameplay_ToggleOnOff;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -471,6 +504,10 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Start".
         /// </summary>
         public InputAction @Start => m_Wrapper.m_Gameplay_Start;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/ToggleOnOff".
+        /// </summary>
+        public InputAction @ToggleOnOff => m_Wrapper.m_Gameplay_ToggleOnOff;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -509,6 +546,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Start.started += instance.OnStart;
             @Start.performed += instance.OnStart;
             @Start.canceled += instance.OnStart;
+            @ToggleOnOff.started += instance.OnToggleOnOff;
+            @ToggleOnOff.performed += instance.OnToggleOnOff;
+            @ToggleOnOff.canceled += instance.OnToggleOnOff;
         }
 
         /// <summary>
@@ -532,6 +572,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Start.started -= instance.OnStart;
             @Start.performed -= instance.OnStart;
             @Start.canceled -= instance.OnStart;
+            @ToggleOnOff.started -= instance.OnToggleOnOff;
+            @ToggleOnOff.performed -= instance.OnToggleOnOff;
+            @ToggleOnOff.canceled -= instance.OnToggleOnOff;
         }
 
         /// <summary>
@@ -600,5 +643,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnStart(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ToggleOnOff" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleOnOff(InputAction.CallbackContext context);
     }
 }

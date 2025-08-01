@@ -9,13 +9,13 @@ public class ScreenShakeSimple : MonoBehaviour
     public float shakeAmplitude = 0.3f;
     public static ScreenShakeSimple Instance;
 
-    CamFollowPlayer followPlayer;
+    RetroGameCamera followPlayer;
 
     private void Awake()
     {
         Instance = this;
 
-        followPlayer = GetComponent<CamFollowPlayer>();
+        followPlayer = GetComponent<RetroGameCamera>();
     }
 
     [ContextMenu("Shake")]

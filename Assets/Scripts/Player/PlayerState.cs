@@ -14,7 +14,7 @@ public class PlayerState : MonoBehaviour, IDualable
     Rigidbody body;
 
     int freezeInputFrame;
-    public bool AreGameplayInputsFrozen => freezeGameplayInputState.IsOn || Time.frameCount<=freezeInputFrame || !GameManager.Instance.GameIsPlaying;
+    public bool AreGameplayInputsFrozen => freezeGameplayInputState.IsOn || Time.frameCount<=freezeInputFrame || !RetroGameManager.Instance.GameIsPlaying;
 
     [Header("Duel")]
     [SerializeField] int baseHP = 5;

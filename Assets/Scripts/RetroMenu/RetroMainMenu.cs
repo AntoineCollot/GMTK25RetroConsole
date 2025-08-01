@@ -10,13 +10,13 @@ public class RetroMainMenu : MonoBehaviour
     [SerializeField] GameObject loadCodeCursor;
     [SerializeField] GameObject panel;
 
-    ConsoleLoadingManager console;
+    RetroConsoleManager console;
 
     bool hasUsedDirection;
 
     private void Awake()
     {
-        console = GetComponentInParent<ConsoleLoadingManager>();
+        console = GetComponentInParent<RetroConsoleManager>();
     }
 
     private void OnEnable()
@@ -32,7 +32,7 @@ public class RetroMainMenu : MonoBehaviour
 
     private void Update()
     {
-        Vector2 inputs = MenuInputs.Cross;
+        Vector2 inputs = MenuInputs.Crosspad;
         Direction inputDir = inputs.ToDirection();
 
         //wait to return to neutral and big enough input
@@ -59,7 +59,6 @@ public class RetroMainMenu : MonoBehaviour
                 SFXManager.PlaySound(GlobalSFX.UIValidate);
                 break;
         }
-
     }
 
     private void Clear()

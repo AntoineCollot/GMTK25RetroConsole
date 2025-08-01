@@ -104,9 +104,10 @@ public class PlayerMovement : MonoBehaviour, IMoveable
         onMovementFinished?.Invoke(to);
     }
 
-    public void TeleportAtPos(Vector2Int pos)
+    public void TeleportAtPos(Vector2Int spawnPos)
     {
-        transform.position = GameGrid.GridToWorldPos(gridPos);
+        gridPos = spawnPos;
+        transform.position = GameGrid.GridToWorldPos(spawnPos);
         LookDirection(Direction.Down);
     }
 }

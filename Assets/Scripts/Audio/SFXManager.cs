@@ -13,6 +13,8 @@ public enum GlobalSFX
     ToggleClick,
     StartMenu,
     ConsoleJingle,
+    ConsoleTurnOn,
+    ConsoleTurnOff,
     StartGame,
     Attack,
     Interact,

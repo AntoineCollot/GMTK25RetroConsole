@@ -9,7 +9,7 @@ public static class MenuInputs
     public static bool BIsPressed => inputMap.Gameplay.B.IsPressed();
     public static Action OnAPressed;
     public static Action OnBPressed;
-    public static Vector2 Cross => inputMap.Gameplay.Move.ReadValue<Vector2>();
+    public static Vector2 Crosspad => inputMap.Gameplay.Move.ReadValue<Vector2>();
 
     static MenuInputs()
     {
@@ -39,11 +39,13 @@ public static class MenuInputs
 
     private static void OnAPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnAPressed?.Invoke();
+        if (RealConsole.Instance != null && RealConsole.Instance.isOn)
+            OnAPressed?.Invoke();
     }
 
     private static void OnBPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnBPressed?.Invoke();
+        if (RealConsole.Instance != null && RealConsole.Instance.isOn)
+            OnBPressed?.Invoke();
     }
 }

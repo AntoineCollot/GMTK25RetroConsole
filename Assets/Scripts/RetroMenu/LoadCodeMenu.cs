@@ -19,13 +19,13 @@ public class LoadCodeMenu : MonoBehaviour
     Sprite idleSprite;
 
     int selectedValue;
-    ConsoleLoadingManager console;
+    RetroConsoleManager console;
 
     void Awake()
     {
         idleSprite = circleImage.sprite;
         code = new int[CODE_LENGTH];
-        console = GetComponentInParent<ConsoleLoadingManager>();
+        console = GetComponentInParent<RetroConsoleManager>();
 
     }
 
@@ -46,7 +46,7 @@ public class LoadCodeMenu : MonoBehaviour
 
     private void Update()
     {
-        Vector2 inputs = MenuInputs.Cross;
+        Vector2 inputs = MenuInputs.Crosspad;
         if (!IsCodeCompleted && inputs.magnitude > 0.5f)
         {
             float angle = GetVectorAngle(inputs);
@@ -75,7 +75,7 @@ public class LoadCodeMenu : MonoBehaviour
         {
             //Load level
             int candidateCode = GetCodeAsInt();
-            if (GameManager.Instance.HasCode(candidateCode))
+            if (CodePointDatabase.Instance.HasCode(candidateCode))
             {
                 console.StartGame(candidateCode);
             }
@@ -139,7 +139,6 @@ public class LoadCodeMenu : MonoBehaviour
         angle = 360 - angle;
         angle += 30;
         angle %= 360;
-        Debug.Log("Angle " + angle);
         return angle;
     }
 
