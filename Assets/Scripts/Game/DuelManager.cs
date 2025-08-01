@@ -85,7 +85,19 @@ public class DuelManager : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(ATTACK_INTERVAL_TIME);
+        yield return new WaitForSeconds(ATTACK_INTERVAL_TIME*0.5f);
+        StartCoroutine(EndDuelAnim());
+    }
+
+    IEnumerator EndDuelAnim()
+    {
+        float t = 0;
+        while (t < 1)
+        {
+            t += Time.deltaTime / (BACKGROUND_GROW_TIME);
+            duelBackground.sharedMaterial.SetFloat("_Threshold", 1-t);
+            yield return null;
+        }
 
         EndDuel();
     }

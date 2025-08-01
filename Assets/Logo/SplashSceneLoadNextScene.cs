@@ -41,7 +41,8 @@ public class SplashSceneLoadNextScene : MonoBehaviour
         //Load the scene.
         //If it takes less than a second, wait for the second to finish so the animation doesn't get rushed
         float realTimeLoadStart = Time.realtimeSinceStartup;
-        SceneManager.LoadScene(1,LoadSceneMode.Additive);
+        //SceneManager.LoadScene(1,LoadSceneMode.Additive);
+        SceneLoader.LoadMenu(LoadSceneMode.Additive);
         yield return new WaitUntil(() => Time.realtimeSinceStartup - realTimeLoadStart > MIN_LOAD_TIME);
 
         t = 0;

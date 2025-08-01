@@ -10,22 +10,13 @@ public static class SceneLoader
     const string RETRO_SCENE_NAME = "RetroGame";
     const string MAIN_SCENE_NAME = "MainScene";
 
-    static public void LoadNext()
+    static public void LoadMenu(LoadSceneMode mode)
     {
         if (isLoading)
             return;
 
         isLoading = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    static public void LoadMenu()
-    {
-        if (isLoading)
-            return;
-
-        isLoading = true;
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(1, mode);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
