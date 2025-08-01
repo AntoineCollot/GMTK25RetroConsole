@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,19 +17,34 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    [Header("CodePoints")]
+    public List<CodePoint> codePoints;
+
     void Awake()
     {
         Instance = this;
         if (autoStart)
-            StartGame();
+            StartGame(0);
     }
 
-    public void StartGame()
+    public void StartGame(int code)
     {
+        Vector3 spawnPos = codePoints[0].target.position;
+        if (codePoints.Any(c => c.code == code))
+        {
+            CodePoint selectedPoint = codePoints.First(c => c.code == code);
+            spawnPos = selectedPoint.target.position;
+        }
+
+        PlayerMovement player = FindAnyObjectByType<PlayerMovement>();
+        player.TeleportAtPos(GameGrid.WordPosToGrid(spawnPos));
+
         if (gameHasStarted)
             return;
         gameHasStarted = true;
         onGameStart.Invoke();
+
+        SFXManager.PlaySound(GlobalSFX.StartGame);
     }
 
     public void GameOver()
@@ -47,4 +63,16 @@ public class GameManager : MonoBehaviour
         gameIsOver = true;
         onGameWin.Invoke();
     }
+
+    public bool HasCode(int code)
+    {
+        return codePoints.Any(c => c.code == code);
+    }
+}
+
+[System.Serializable]
+public struct CodePoint
+{
+    public int code;
+    public Transform target;
 }
