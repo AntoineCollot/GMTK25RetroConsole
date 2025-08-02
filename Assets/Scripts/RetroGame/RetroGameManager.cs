@@ -60,4 +60,9 @@ public class RetroGameManager : MonoBehaviour
         gameIsOver = true;
         onGameWin.Invoke();
     }
+
+    public void Crash()
+    {
+        gameIsOver = true;
+    }
 }

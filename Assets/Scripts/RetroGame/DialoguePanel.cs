@@ -23,7 +23,7 @@ public class DialoguePanel : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        text = GetComponentInChildren<TextMeshProUGUI>();
+        text = GetComponentInChildren<TextMeshProUGUI>(true);
         linesToDisplay = new();
     }
 

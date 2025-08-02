@@ -73,6 +73,7 @@ public class RetroConsoleManager : MonoBehaviour
         SceneLoader.UnloadRetroGame();
 
         consoleInterface.SetActive(true);
+        StopAllCoroutines();
         StartCoroutine(BootAnim(displayLogo));
     }
 

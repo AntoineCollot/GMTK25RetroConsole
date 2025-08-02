@@ -14,6 +14,7 @@ public class ConsoleLogoAnim : MonoBehaviour
 
     private void OnEnable()
     {
+        StopAllCoroutines();
         StartCoroutine(Play());
     }
 

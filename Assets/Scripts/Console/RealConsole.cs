@@ -69,6 +69,7 @@ public class RealConsole : MonoBehaviour
 
     public void ToggleOnOff()
     {
+        GlitchRumbleCamera.Instance.ResetCam();
         lastToggleTime = Time.time;
         isOn = !isOn;
 

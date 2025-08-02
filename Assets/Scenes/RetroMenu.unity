@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 283579620}
   - component: {fileID: 283579621}
   - component: {fileID: 283579622}
+  - component: {fileID: 283579623}
   m_Layer: 0
   m_Name: GameCamera
   m_TagString: Untagged
@@ -232,7 +233,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 0
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -287,6 +288,18 @@ MonoBehaviour:
   shakeTime: 1
   shakeFreq: 20
   shakeAmplitude: 0.5
+--- !u!114 &283579623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283579614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ec7040ff3ab3f49a75bf8ce4eb663f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &351221740
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +537,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 0
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1

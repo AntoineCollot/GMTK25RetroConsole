@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 387bece861ebf664ea933d8f9db1420f
   - enabled: 1
+    path: Assets/Scenes/RetroMenu.unity
+    guid: 4b1e3b4ed91698e4dae0298dab7d7256
+  - enabled: 1
     path: Assets/Scenes/RetroGame.unity
     guid: 8ddac3f02ebb15d4ca1ad8c5e920e068
   m_configObjects: {}

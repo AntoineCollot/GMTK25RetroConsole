@@ -18,6 +18,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 8300000, guid: a1cff62f16f4f7d40b8e67021d29917a, type: 3}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -27,6 +29,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   volumes:
+  - 0.5
+  - 0.5
   - 0.5
   - 0.5
   - 0.5

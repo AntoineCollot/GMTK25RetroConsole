@@ -41,12 +41,14 @@ public class StartMenu : MonoBehaviour
 
     private void OnStartPerformed(InputAction.CallbackContext context)
     {
+        if (!RetroGameManager.Instance.GameIsPlaying)
+            return;
         ToggleStartMenu();
     }
 
     public void ToggleStartMenu()
     {
-        isOn =!isOn;
+        isOn = !isOn;
 
         freezePlayerToken.SetOn(isOn);
         panel.SetActive(isOn);
