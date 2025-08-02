@@ -47,6 +47,7 @@ public class DuelManager : MonoBehaviour
         Vector2Int opponentPosition = currentOpponent.GridPos;
         Direction directionToEnemy = (opponentPosition - playerMovement.gridPos).ToDirection();
         playerMovement.LookDirection(directionToEnemy);
+        playerAnimations.SetSortingLayerAsDuel();
 
         if (currentOpponent.TryGetComponent(out IMoveable opponentMoveable))
         {
@@ -80,6 +81,13 @@ public class DuelManager : MonoBehaviour
             ScreenShakeSimple.Instance.Shake(damages * 0.25f);
             firstAttack = false;
 
+            //Kill opponent
+            if (someoneDied)
+            {
+                Instantiate(smokePrefab, currentOpponent.transform.position, Quaternion.identity, null);
+                currentOpponent.gameObject.SetActive(false);
+            }
+
             if (!someoneDied)
             {
                 yield return new WaitForSeconds(ATTACK_INTERVAL_TIME);
@@ -87,13 +95,6 @@ public class DuelManager : MonoBehaviour
                 damages = currentOpponent.Strength;
                 PlayerState.Instance.TakeDamages(damages, out someoneDied);
                 ScreenShakeSimple.Instance.Shake(damages * 0.25f);
-
-                //Kill
-                if (someoneDied)
-                {
-                    Instantiate(smokePrefab, currentOpponent.transform.position, Quaternion.identity, null);
-                    Destroy(currentOpponent.gameObject);
-                }
             }
         }
 
@@ -118,6 +119,7 @@ public class DuelManager : MonoBehaviour
     {
         isInDuel = false;
         duelBackground.gameObject.SetActive(false);
+        playerAnimations.ResetSortingLayer();
         currentOpponent.OnDuelFinished();
     }
 }

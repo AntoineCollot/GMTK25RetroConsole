@@ -33,7 +33,7 @@ public class RetroGameManager : MonoBehaviour
         if (gameHasStarted)
             return;
 
-        if(loadCode)
+        if(loadCode && loadedCode>=0)
         {
             Vector3 spawnPos = CodePointDatabase.Instance.GetSpawnForCode(loadedCode);
             PlayerMovement player = FindAnyObjectByType<PlayerMovement>();

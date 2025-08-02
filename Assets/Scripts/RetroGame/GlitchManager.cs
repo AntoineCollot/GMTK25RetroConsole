@@ -1,4 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class GlitchManager : MonoBehaviour
 {
@@ -68,4 +71,12 @@ public class GlitchManager : MonoBehaviour
         ppGlitchMat.SetFloat(glitchVarID, 3);
         RetroGameManager.Instance.Crash();
     }
+
+#if UNITY_EDITOR
+    private void OnGUI()
+    {
+        string text = $"{(elapsedTime01 * glitchTime).ToString("N0")}/{glitchTime}";
+        GUI.Label(new Rect(20, 20,100,100), text,EditorStyles.boldLabel);
+    }
+#endif
 }

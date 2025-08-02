@@ -197,6 +197,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PushButton
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 961f4850d0034434f90884ae5106abef
+      internalID: 1698643118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -218,6 +240,7 @@ TextureImporter:
       PlayerCharacter_1: -1757504731
       PlayerCharacter_2: -498134968
       PlayerCharacter_3: 2135287868
+      PushButton: 1698643118
       Sign: 1336924724
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

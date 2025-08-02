@@ -12,11 +12,19 @@ public class RetroConsoleManager : MonoBehaviour
     const float LOGO_TIME = 2.5f;
     const float MAIN_MENU_ANIM = 1;
 
+    [Header("DEBUG")]
+    [SerializeField] int debugCode;
+    [SerializeField] bool autoStart;
+
     void Start()
     {
         LoadMainMenu();
 
         RealConsole.Instance.onPoweredStateChanged += OnConsolePoweredChanged;
+
+#if UNITY_EDITOR
+        DebugAutoStart();
+#endif
     }
 
     private void OnDestroy()
@@ -31,6 +39,18 @@ public class RetroConsoleManager : MonoBehaviour
     {
         
     }
+
+#if UNITY_EDITOR
+    void DebugAutoStart()
+    {
+        if(autoStart)
+        {
+            RetroGameManager.loadedCode = debugCode;
+            SceneLoader.LoadRetroGame();
+            CloseInterface();
+        }
+    }
+#endif
 
     public void LoadMainMenu()
     {

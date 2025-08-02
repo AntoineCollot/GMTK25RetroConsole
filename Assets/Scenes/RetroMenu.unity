@@ -204,7 +204,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1527
+    m_Bits: 3575
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 32145898aa4a19045beb3256f2b1e334, type: 2}
   m_TargetDisplay: 0
@@ -1505,6 +1505,8 @@ MonoBehaviour:
   retroMainMenu: {fileID: 1776425162}
   loadCodeMenu: {fileID: 438634130}
   consoleLogo: {fileID: 812234287}
+  debugCode: -1
+  autoStart: 1
 --- !u!4 &1717199279
 Transform:
   m_ObjectHideFlags: 0
@@ -1536,6 +1538,8 @@ MonoBehaviour:
   codePoints:
   - code: 0
     gridPos: {x: 0, y: 0}
+  - code: 2713
+    gridPos: {x: -3, y: -10}
 --- !u!1 &1776425160
 GameObject:
   m_ObjectHideFlags: 0

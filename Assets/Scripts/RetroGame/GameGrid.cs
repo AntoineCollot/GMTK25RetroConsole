@@ -5,6 +5,7 @@ public static class GameGrid
 {
     //level layer 6
     public static LayerMask obstacleLayers = 1 << 6 | 1 << 8;
+    public static LayerMask bridgeLayers = 1 << 11;
 
     public static Vector3 GridToWorldPos(in Vector2Int gridPos)
     {
@@ -78,6 +79,9 @@ public static class GameGrid
     public static bool IsWalkable(in Vector2Int gridPos)
     {
         Collider2D col = Physics2D.OverlapPoint(GridToWorldPos(in gridPos), obstacleLayers);
+        //If obstacle, check if bridge could free the way
+        if (col != null)
+            return HasBridge(in gridPos);
         return col == null;
     }
 
@@ -93,6 +97,12 @@ public static class GameGrid
         if (col == null)
             return null;
         return col.gameObject;
+    }
+
+    public static bool HasBridge(in Vector2Int gridPos)
+    {
+        Collider2D col = Physics2D.OverlapPoint(GridToWorldPos(in gridPos), bridgeLayers);
+        return col != null;
     }
 
     public static bool CanSeeTarget(in Vector2Int fromPos, Direction lookDirection, in Vector2Int targetPos, int maxDistance = 100)

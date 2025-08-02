@@ -35,6 +35,8 @@ public class InteractableEntity : MonoBehaviour
         {
             interactable.OnInteract(dir);
         }
+
+        SFXManager.PlaySound(GlobalSFX.Interact);
     }
 }
 

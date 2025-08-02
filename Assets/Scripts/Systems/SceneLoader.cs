@@ -26,6 +26,10 @@ public static class SceneLoader
 
     static public void LoadRetroGame()
     {
+        //make sure the scene isn't already loaded
+        if (SceneManager.GetSceneByName(RETRO_GAME_SCENE_NAME).IsValid())
+            return;
+
         SceneManager.LoadScene(RETRO_GAME_SCENE_NAME, LoadSceneMode.Additive);
     }
 
