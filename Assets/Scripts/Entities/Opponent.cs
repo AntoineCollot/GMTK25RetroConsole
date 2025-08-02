@@ -1,5 +1,9 @@
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class Opponent : MonoBehaviour, IDualable
 {
     [Header("Components")]
@@ -15,6 +19,7 @@ public class Opponent : MonoBehaviour, IDualable
     public int CurrentHP => currentHP;
     [SerializeField] int strength = 1;
     public int Strength => strength;
+    public bool isTough = false;
 
     CompositeStateToken freezePlayerToken;
 
@@ -56,8 +61,9 @@ public class Opponent : MonoBehaviour, IDualable
         PlayerState.Instance.freezeGameplayInputState.Remove(freezePlayerToken);
         characterAnimations.ResetSortingLayer();
 
-        if (currentHP < 0)
-            Die();
+        //Called in duel manager
+        //if (currentHP < 0)
+        //    Die();
     }
 
     public void Attack()
@@ -76,7 +82,23 @@ public class Opponent : MonoBehaviour, IDualable
 
     public void Die()
     {
+        //Legacy, happens in duel manager directly
+        gameObject.SetActive(false);
+    }
 
+    public int EvaluateDamagesToPlayer()
+    {
+        int hp = baseHP;
+        int damageDealt = 0;
+
+        //player attacks first
+        hp -= PlayerState.BASE_STRENGTH;
+        while(hp>0)
+        {
+            damageDealt += strength;
+            hp -= PlayerState.BASE_STRENGTH;
+        }
+        return damageDealt;
     }
 }
 
@@ -87,3 +109,17 @@ public interface IDualable
 
     void TakeDamages(int damage, out bool die);
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(Opponent))]
+public class OpponentEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        Opponent opponent = (Opponent)target;
+        EditorGUILayout.Space(20);
+        DrawDefaultInspector();
+        EditorGUILayout.LabelField("Total Damages To Player :"+ opponent.EvaluateDamagesToPlayer());
+    }
+}
+#endif

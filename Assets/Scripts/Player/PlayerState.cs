@@ -18,10 +18,10 @@ public class PlayerState : MonoBehaviour, IDualable
 
     [Header("Duel")]
     [SerializeField] int baseHP = 5;
-    [SerializeField] int baseStrength = 1;
+    public const int BASE_STRENGTH = 1;
     int currentHP;
     public int CurrentHP => currentHP;
-    public int Strength => baseStrength;
+    public int Strength => BASE_STRENGTH;
 
     PlayerMovement movement;
     public event Action<Vector2Int> onPlayerPositionChanged;

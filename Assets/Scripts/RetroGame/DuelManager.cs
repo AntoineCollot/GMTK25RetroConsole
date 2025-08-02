@@ -85,7 +85,7 @@ public class DuelManager : MonoBehaviour
             if (someoneDied)
             {
                 Instantiate(smokePrefab, currentOpponent.transform.position, Quaternion.identity, null);
-                currentOpponent.gameObject.SetActive(false);
+                currentOpponent.Die();
             }
 
             if (!someoneDied)

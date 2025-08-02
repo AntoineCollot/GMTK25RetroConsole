@@ -105,11 +105,15 @@ public static class GameGrid
         return col != null;
     }
 
-    public static bool CanSeeTarget(in Vector2Int fromPos, Direction lookDirection, in Vector2Int targetPos, int maxDistance = 100)
+    public static bool CanSeeTarget(in Vector2Int fromPos, Direction lookDirection, in Vector2Int targetPos, int maxDistance = 100, bool ignoreLineOfSight = false)
     {
         //Make sure positions are aligned
         if (!IsAligned(in fromPos, lookDirection, in targetPos, maxDistance))
             return false;
+
+        //If no check for obstacle, don't do the raycast after this point
+        if (ignoreLineOfSight)
+            return true;
 
         //Raycast to target (from next cell to avoi hitting ourselves)
         Vector2Int rayOrigin = fromPos + lookDirection.ToVector();

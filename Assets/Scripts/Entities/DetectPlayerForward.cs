@@ -5,6 +5,7 @@ public class DetectPlayerForward : MonoBehaviour
 {
     IMoveable moveable;
     [SerializeField] int maxDistance = 100;
+    [SerializeField] bool ignoreLightOfSight = false;
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class DetectPlayerForward : MonoBehaviour
     private void OnPlayerPositionChanged(Vector2Int playerPos)
     {
         Vector2Int pos = GameGrid.WordPosToGrid(transform.position);
-        if (GameGrid.CanSeeTarget(in pos, moveable.CurrentDirection, in playerPos, maxDistance))
+        if (GameGrid.CanSeeTarget(in pos, moveable.CurrentDirection, in playerPos, maxDistance, ignoreLightOfSight))
         {
             SendMessage("OnPlayerDetected", playerPos);
         }

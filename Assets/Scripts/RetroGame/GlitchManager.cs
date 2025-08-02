@@ -23,7 +23,7 @@ public class GlitchManager : MonoBehaviour
             //Only last part of glitch time visible
             float visible = Mathf.InverseLerp(0.66f, 1, elapsedTime01);
             //Square for me effect toward the end
-            return visible * visible;
+            return Mathf.Pow(visible, 2.5f);
         }
     }
 
