@@ -38,6 +38,14 @@ public class DialoguePanel : MonoBehaviour
         ForceClose();
     }
 
+    private void Update()
+    {
+        if(isOpen && !RetroGameManager.Instance.GameIsPlaying)
+        {
+            Close();
+        }
+    }
+
     private void OnDestroy()
     {
         if (inputs != null)

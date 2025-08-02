@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class LoadCodeMenu : MonoBehaviour
@@ -20,6 +21,7 @@ public class LoadCodeMenu : MonoBehaviour
 
     int selectedValue;
     RetroConsoleManager console;
+    int lastTryAddedDigitFrame;
 
     void Awake()
     {
@@ -46,6 +48,37 @@ public class LoadCodeMenu : MonoBehaviour
 
     private void Update()
     {
+        if (Keyboard.current.digit0Key.isPressed || Keyboard.current.numpad0Key.isPressed)
+        {
+            AddNextDigit(0);
+            return;
+        }
+        if (Keyboard.current.digit1Key.isPressed || Keyboard.current.numpad1Key.isPressed)
+        {
+            AddNextDigit(1);
+            return;
+        }
+        if (Keyboard.current.digit2Key.isPressed || Keyboard.current.numpad2Key.isPressed)
+        {
+            AddNextDigit(2);
+            return;
+        }
+        if (Keyboard.current.digit3Key.isPressed || Keyboard.current.numpad3Key.isPressed)
+        {
+            AddNextDigit(3);
+            return;
+        }
+        if (Keyboard.current.digit4Key.isPressed || Keyboard.current.numpad4Key.isPressed)
+        {
+            AddNextDigit(4);
+            return;
+        }
+        if (Keyboard.current.digit5Key.isPressed || Keyboard.current.numpad5Key.isPressed)
+        {
+            AddNextDigit(5);
+            return;
+        }
+
         Vector2 inputs = MenuInputs.Crosspad;
         if (!IsCodeCompleted && inputs.magnitude > 0.5f)
         {
@@ -75,12 +108,15 @@ public class LoadCodeMenu : MonoBehaviour
         {
             //Load level
             int candidateCode = GetCodeAsInt();
+            Debug.Log("Loading Code " + candidateCode);
             if (CodePointDatabase.Instance.HasCode(candidateCode))
             {
+                Debug.Log("Code found, starting...");
                 console.StartGame(candidateCode);
             }
             else
             {
+                Debug.Log("Code not found...");
                 console.LoadMainMenu();
                 SFXManager.PlaySound(GlobalSFX.UICancel);
             }
@@ -102,6 +138,13 @@ public class LoadCodeMenu : MonoBehaviour
 
     void AddNextDigit(int value)
     {
+        //Do not allow to add digits every frame, or even try to (avoid holding key)
+        if (Time.frameCount <= lastTryAddedDigitFrame + 1)
+        {
+            lastTryAddedDigitFrame = Time.frameCount;
+            return;
+        }
+
         for (int i = 0; i < CODE_LENGTH; i++)
         {
             //Find first digit under 0
@@ -112,6 +155,7 @@ public class LoadCodeMenu : MonoBehaviour
             }
         }
         UpdateCodeText();
+        lastTryAddedDigitFrame = Time.frameCount;
         SFXManager.PlaySound(GlobalSFX.UIValidate);
     }
 
@@ -185,7 +229,7 @@ public class LoadCodeMenu : MonoBehaviour
         int intCode = 0;
         for (int i = 0; i < CODE_LENGTH; i++)
         {
-            intCode += code[i] * Mathf.RoundToInt(Mathf.Pow(10, i));
+            intCode += code[i] * Mathf.RoundToInt(Mathf.Pow(10, (CODE_LENGTH - 1) - i));
         }
         return intCode;
     }

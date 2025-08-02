@@ -1505,7 +1505,7 @@ MonoBehaviour:
   retroMainMenu: {fileID: 1776425162}
   loadCodeMenu: {fileID: 438634130}
   consoleLogo: {fileID: 812234287}
-  debugCode: 2105
+  debugCode: -1
   autoStart: 1
 --- !u!4 &1717199279
 Transform:
@@ -1544,6 +1544,14 @@ MonoBehaviour:
     gridPos: {x: 12, y: -23}
   - code: 2105
     gridPos: {x: 20, y: -21}
+  - code: 4550
+    gridPos: {x: 30, y: 11}
+  - code: 4034
+    gridPos: {x: -32, y: 28}
+  - code: 911
+    gridPos: {x: -33, y: 58}
+  - code: 5241
+    gridPos: {x: -33, y: 58}
 --- !u!1 &1776425160
 GameObject:
   m_ObjectHideFlags: 0

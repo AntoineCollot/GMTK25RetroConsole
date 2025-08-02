@@ -13,6 +13,10 @@ public class RetroGameManager : MonoBehaviour
     public UnityEvent onGameOver = new UnityEvent();
     public UnityEvent onGameWin = new UnityEvent();
 
+    [System.Serializable]
+    public class CodeLoadedEvent : UnityEvent<int> { }
+    public CodeLoadedEvent onCodeLoaded;
+
     public static int loadedCode;
 
     public static RetroGameManager Instance;
@@ -38,6 +42,7 @@ public class RetroGameManager : MonoBehaviour
             Vector3 spawnPos = CodePointDatabase.Instance.GetSpawnForCode(loadedCode);
             PlayerMovement player = FindAnyObjectByType<PlayerMovement>();
             player.TeleportAtPos(GameGrid.WordPosToGrid(spawnPos));
+            onCodeLoaded.Invoke(loadedCode);
         }
 
         gameHasStarted = true;
