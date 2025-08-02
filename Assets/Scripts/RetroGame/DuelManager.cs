@@ -4,6 +4,7 @@ using UnityEngine;
 public class DuelManager : MonoBehaviour
 {
     [SerializeField] SpriteRenderer duelBackground;
+    [SerializeField] GameObject smokePrefab;
 
     public bool isInDuel { get; private set; }
     public Opponent currentOpponent { get; private set; }
@@ -67,13 +68,17 @@ public class DuelManager : MonoBehaviour
     {
         bool someoneDied = false;
         int damages;
+        bool firstAttack = true;
+
         while (!someoneDied)
         {
-            yield return new WaitForSeconds(ATTACK_INTERVAL_TIME);
+            if (!firstAttack)
+                yield return new WaitForSeconds(ATTACK_INTERVAL_TIME);
             playerAnimations.Attack();
             damages = PlayerState.Instance.Strength;
             currentOpponent.TakeDamages(damages, out someoneDied);
-            ScreenShakeSimple.Instance.Shake( damages* 0.25f);
+            ScreenShakeSimple.Instance.Shake(damages * 0.25f);
+            firstAttack = false;
 
             if (!someoneDied)
             {
@@ -82,10 +87,17 @@ public class DuelManager : MonoBehaviour
                 damages = currentOpponent.Strength;
                 PlayerState.Instance.TakeDamages(damages, out someoneDied);
                 ScreenShakeSimple.Instance.Shake(damages * 0.25f);
+
+                //Kill
+                if (someoneDied)
+                {
+                    Instantiate(smokePrefab, currentOpponent.transform.position, Quaternion.identity, null);
+                    Destroy(currentOpponent.gameObject);
+                }
             }
         }
 
-        yield return new WaitForSeconds(ATTACK_INTERVAL_TIME*0.5f);
+        yield return new WaitForSeconds(ATTACK_INTERVAL_TIME * 0.5f);
         StartCoroutine(EndDuelAnim());
     }
 
@@ -95,7 +107,7 @@ public class DuelManager : MonoBehaviour
         while (t < 1)
         {
             t += Time.deltaTime / (BACKGROUND_GROW_TIME);
-            duelBackground.sharedMaterial.SetFloat("_Threshold", 1-t);
+            duelBackground.sharedMaterial.SetFloat("_Threshold", 1 - t);
             yield return null;
         }
 

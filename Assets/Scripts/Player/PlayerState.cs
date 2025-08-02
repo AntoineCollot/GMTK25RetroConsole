@@ -78,6 +78,11 @@ public class PlayerState : MonoBehaviour, IDualable
     {
         Debug.Log("Player Died");
     }
+
+    public void AddHP(int amount)
+    {
+        currentHP+= amount;
+    }
 }
 
 #if UNITY_EDITOR

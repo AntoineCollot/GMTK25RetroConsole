@@ -293,7 +293,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeFreq: 20
   shakeAmplitude: 0.006
-  shake: 1
 --- !u!1 &395242940
 GameObject:
   m_ObjectHideFlags: 0

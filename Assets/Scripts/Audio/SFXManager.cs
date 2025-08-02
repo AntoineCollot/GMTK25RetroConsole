@@ -22,6 +22,7 @@ public enum GlobalSFX
     Detected,
     Kill,
     GameOver,
+    Bonus,
 }
 public class SFXManager : MonoBehaviour
 {
