@@ -1683,6 +1683,7 @@ Transform:
   - {fileID: 1608238997}
   - {fileID: 1874017024}
   - {fileID: 496659887}
+  - {fileID: 519516312}
   - {fileID: 1984871409}
   - {fileID: 1922362120}
   - {fileID: 1218131883}
@@ -7939,6 +7940,95 @@ Transform:
   - {fileID: 1289496053}
   m_Father: {fileID: 2135221186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &519516311
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 259903272}
+    m_Modifications:
+    - target: {fileID: 1181615746162602915, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181615746162602915, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: 'lines.Array.data[0]'
+      value: Secret Cave of the Oracle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181615746162602915, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: 'lines.Array.data[1]'
+      value: do not disturb while she talks with the gods
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894359576977028973, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_Name
+      value: Sign_Cave
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -34.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 33.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a7817f12a4e92e4d9c9575f31e6706c, type: 3}
+--- !u!4 &519516312 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6133676913539066212, guid: 7a7817f12a4e92e4d9c9575f31e6706c,
+    type: 3}
+  m_PrefabInstance: {fileID: 519516311}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &520091261
 PrefabInstance:
   m_ObjectHideFlags: 0

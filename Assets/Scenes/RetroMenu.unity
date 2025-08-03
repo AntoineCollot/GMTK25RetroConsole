@@ -1506,8 +1506,8 @@ MonoBehaviour:
   loadCodeMenu: {fileID: 438634130}
   consoleLogo: {fileID: 812234287}
   debugCode: 5241
-  debugAutoStart: 0
-  debugEnableDevMode: 0
+  debugAutoStart: 1
+  debugEnableDevMode: 1
 --- !u!4 &1717199279
 Transform:
   m_ObjectHideFlags: 0
