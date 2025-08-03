@@ -241,6 +241,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: InvocCircle
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.25, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3c910ebd801f44796c3d670b859bc1
+      internalID: 889167843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -258,6 +280,7 @@ TextureImporter:
       FX_Detect0: -1113810979
       FX_Detect1: 375938448
       HealHeart: -1513987701
+      InvocCircle: 889167843
       PlayerCharacter_0: -126250369
       PlayerCharacter_1: -1757504731
       PlayerCharacter_2: -498134968

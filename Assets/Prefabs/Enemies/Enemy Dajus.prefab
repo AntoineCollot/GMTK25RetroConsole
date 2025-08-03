@@ -322,8 +322,21 @@ MonoBehaviour:
   isTough: 1
   battleTheme: 8
   dialogue:
-  - Hi
-  overrideCharacterTime: 0.1
+  - "Ah, so you s\u2026s\u2026s\u2026.survived?"
+  - "It\u2019s really s\u2026s\u2026It\u2019s really unexpected!"
+  - "You know, it\u2019s noth\u2026ing pers\u2026sonal."
+  - "I don\u2019t even know why I did it."
+  - "I guess I felt us\u2026seless and alone."
+  - "Maybe by killing everyone, th\u2026they would notic\u2026e me?"
+  - "But no turning back now, let\u2019s du\u2026du\u2026duel!"
+  - "Oh and s\u2026sorry in advance f...for killing you\u2026again!"
+  - "No really, I mean it. I\u2019m so damn alone\u2026"
+  - "It\u2019s no joke you know\u2026.lonelyness."
+  - "It kills people, you know? Well it\u2019s even going to kill you."
+  - Indiretly, but I guess it counts.
+  - ...Are you even lis..stening to me?
+  - "Alright let\u2019s f..fight!"
+  overrideCharacterTime: 0.07
   onDefeated:
     m_PersistentCalls:
       m_Calls: []

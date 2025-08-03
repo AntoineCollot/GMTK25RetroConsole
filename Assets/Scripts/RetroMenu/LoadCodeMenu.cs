@@ -133,7 +133,10 @@ public class LoadCodeMenu : MonoBehaviour
         if (HasAnyDigit)
             RemoveLastDigit();
         else
+        {
             console.LoadMainMenu();
+            SFXManager.PlaySound(GlobalSFX.UICancel);
+        }
     }
 
     void AddNextDigit(int value)
@@ -195,8 +198,11 @@ public class LoadCodeMenu : MonoBehaviour
 
     void Select(int value)
     {
+        if (selectedValue == value)
+            return;
         circleImage.sprite = selectedSprites[value];
         selectedValue = value;
+        SFXManager.PlaySound(GlobalSFX.CursorMove);
     }
 
     void Deselect()

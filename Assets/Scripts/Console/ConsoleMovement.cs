@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class ConsoleMovement : MonoBehaviour
     {
         currentTarget = idlePosition;
         RealConsole.Instance.onPoweredStateChanged += OnPowererdChanged;
+        RealConsole.Instance.onCartridgeChanged += OnCartridgeChanged;
     }
 
     private void OnDestroy()
@@ -26,7 +28,14 @@ public class ConsoleMovement : MonoBehaviour
         if(RealConsole.Instance != null)
         {
             RealConsole.Instance.onPoweredStateChanged -= OnPowererdChanged;
+            RealConsole.Instance.onCartridgeChanged -= OnCartridgeChanged;
         }
+    }
+
+    private void OnCartridgeChanged(bool isOut)
+    {
+        lastTargetChangeTime = Time.time;
+        SetTarget(cartouchePosition);
     }
 
     private void OnPowererdChanged(bool isOn)

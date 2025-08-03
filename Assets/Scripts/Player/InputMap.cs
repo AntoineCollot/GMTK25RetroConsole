@@ -135,6 +135,15 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cartridge"",
+                    ""type"": ""Button"",
+                    ""id"": ""c71af0c2-9d68-434a-b253-62ab9a26049f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -379,6 +388,28 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""action"": ""ToggleOnOff"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdd00132-793d-41d3-b475-0686ff9da37f"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cartridge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1499072-e426-4c7e-84e1-317ad74e034e"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cartridge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -392,6 +423,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         m_Gameplay_B = m_Gameplay.FindAction("B", throwIfNotFound: true);
         m_Gameplay_Start = m_Gameplay.FindAction("Start", throwIfNotFound: true);
         m_Gameplay_ToggleOnOff = m_Gameplay.FindAction("ToggleOnOff", throwIfNotFound: true);
+        m_Gameplay_Cartridge = m_Gameplay.FindAction("Cartridge", throwIfNotFound: true);
     }
 
     ~@InputMap()
@@ -477,6 +509,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_B;
     private readonly InputAction m_Gameplay_Start;
     private readonly InputAction m_Gameplay_ToggleOnOff;
+    private readonly InputAction m_Gameplay_Cartridge;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -508,6 +541,10 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/ToggleOnOff".
         /// </summary>
         public InputAction @ToggleOnOff => m_Wrapper.m_Gameplay_ToggleOnOff;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Cartridge".
+        /// </summary>
+        public InputAction @Cartridge => m_Wrapper.m_Gameplay_Cartridge;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -549,6 +586,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @ToggleOnOff.started += instance.OnToggleOnOff;
             @ToggleOnOff.performed += instance.OnToggleOnOff;
             @ToggleOnOff.canceled += instance.OnToggleOnOff;
+            @Cartridge.started += instance.OnCartridge;
+            @Cartridge.performed += instance.OnCartridge;
+            @Cartridge.canceled += instance.OnCartridge;
         }
 
         /// <summary>
@@ -575,6 +615,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @ToggleOnOff.started -= instance.OnToggleOnOff;
             @ToggleOnOff.performed -= instance.OnToggleOnOff;
             @ToggleOnOff.canceled -= instance.OnToggleOnOff;
+            @Cartridge.started -= instance.OnCartridge;
+            @Cartridge.performed -= instance.OnCartridge;
+            @Cartridge.canceled -= instance.OnCartridge;
         }
 
         /// <summary>
@@ -650,5 +693,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnToggleOnOff(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Cartridge" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCartridge(InputAction.CallbackContext context);
     }
 }

@@ -50,14 +50,28 @@ public class StartMenu : MonoBehaviour
     {
         isOn = !isOn;
 
+        if (isOn)
+        {
+            SFXManager.PlaySound(GlobalSFX.StartMenu);
+            inputs.Gameplay.A.performed += OnAPerformed;
+        }
+        else
+        {
+            inputs.Gameplay.A.performed -= OnAPerformed;
+            SFXManager.PlaySound(GlobalSFX.StartMenu);
+        }
+
         freezePlayerToken.SetOn(isOn);
         panel.SetActive(isOn);
-        inputs.Gameplay.Start.performed -= OnAPerformed;
-        inputs.Gameplay.Start.performed += OnAPerformed;
     }
 
     private void OnAPerformed(InputAction.CallbackContext context)
     {
-        //Load main menu
+        if (isOn)
+        {
+            //Load main menu
+            RetroConsoleManager.Instance.OpenInterface(false);
+            SFXManager.PlaySound(GlobalSFX.UIValidate);
+        }
     }
 }

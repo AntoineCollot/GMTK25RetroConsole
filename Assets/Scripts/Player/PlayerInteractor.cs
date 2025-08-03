@@ -35,8 +35,10 @@ public class PlayerInteractor : MonoBehaviour
         {
             if (candidate.TryGetComponent(out InteractableEntity interactable))
             {
-                interactable.PlayerInteract(playerMovement.gridPos);   
+                interactable.PlayerInteract(playerMovement.gridPos);
+                SFXManager.PlaySound(GlobalSFX.Interact);
             }
         }
+
     }
 }

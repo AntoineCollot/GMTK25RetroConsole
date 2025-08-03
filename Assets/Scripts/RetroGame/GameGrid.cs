@@ -49,6 +49,10 @@ public static class GameGrid
         }
     }
 
+    public static Direction ToDirection(this Vector3 v)
+    {
+        return ((Vector2)v).ToDirection();
+    }
 
     public static Direction ToDirection(this Vector2 v)
     {

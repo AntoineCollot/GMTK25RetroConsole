@@ -13,11 +13,14 @@ public class TutoControls : MonoBehaviour
         hasBeenSeen = false;
         tuto.SetActive(false);
 
-        Invoke("ShowDelayed", 2);
+        // Invoke("ShowDelayed", 3);
+        Show(true);
     }
 
     void ShowDelayed()
     {
+        if (RetroGameManager.Instance != null && RetroGameManager.Instance.gameHasStarted)
+            return;
         Show(true);
     }
 
@@ -33,13 +36,16 @@ public class TutoControls : MonoBehaviour
         }
     }
 
-    void Show(bool value)
+    public void Show(bool value)
     {
         if (isDisplayed == value)
             return;
 
         isDisplayed = value;
         tuto.SetActive(value);
+
+        if (value)
+            hasBeenSeen = true;
 
         if (hasBeenSeen && !value)
             enabled = false;

@@ -8,15 +8,21 @@ public class RealConsole : MonoBehaviour
 {
     public bool isOn { get; private set; }
 
+    [SerializeField] GameObject mainMenuReal;
+    [SerializeField] TutoControls tutoControls;
+
     [SerializeField] MeshRenderer consoleRenderer;
     [SerializeField] Material screenOnMat;
     [SerializeField] Material screenOffMat;
     Material consoleMaterial;
 
+    public bool isCartridgeOut { get; private set; }
+
     float lastToggleTime;
-    public InputMap inputs { get;private set; }
+    public InputMap inputs { get; private set; }
 
     public event Action<bool> onPoweredStateChanged;
+    public event Action<bool> onCartridgeChanged;
 
     public static RealConsole Instance;
 
@@ -31,7 +37,10 @@ public class RealConsole : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(FirstBoot());
+        if (mainMenuReal.activeInHierarchy)
+            StartCoroutine(WaitFirstInput());
+        else
+            StartCoroutine(FirstBoot());
     }
 
     private void OnEnable()
@@ -44,6 +53,8 @@ public class RealConsole : MonoBehaviour
     {
         if (inputs != null)
         {
+            inputs.Gameplay.ToggleOnOff.performed -= OnToggleOnOffPerformed;
+            inputs.Gameplay.Cartridge.performed -= OnCartridgePerformed;
             inputs.Disable();
         }
     }
@@ -56,10 +67,18 @@ public class RealConsole : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator WaitFirstInput()
     {
+        UpdateScreenMat();
+        while (!inputs.Gameplay.A.IsPressed() && !inputs.Gameplay.Start.IsPressed())
+        {
+            yield return null;
+        }
 
+        mainMenuReal.SetActive(false);
+        tutoControls.Show(false);
+        tutoControls.enabled = false;
+        StartCoroutine(FirstBoot());
     }
 
     IEnumerator FirstBoot()
@@ -70,24 +89,52 @@ public class RealConsole : MonoBehaviour
 
     private void OnToggleOnOffPerformed(InputAction.CallbackContext context)
     {
+        if (mainMenuReal.activeInHierarchy)
+            return;
+
         if (Time.time >= lastToggleTime + MIN_TOGGLE_TIME)
             ToggleOnOff();
     }
 
     public void ToggleOnOff()
     {
+        if (isCartridgeOut)
+        {
+            SFXManager.PlaySound(GlobalSFX.UICancel);
+            return;
+        }
+
         GlitchRumbleCamera.Instance.ResetCam();
         lastToggleTime = Time.time;
         isOn = !isOn;
 
         UpdateScreenMat();
 
-        if (isOn)
-            SFXManager.PlaySound(GlobalSFX.ConsoleTurnOn);
-        else
-            SFXManager.PlaySound(GlobalSFX.ConsoleTurnOff);
+        if (Time.time > 0.5f)
+        {
+            if (isOn)
+            {
+                SFXManager.PlaySound(GlobalSFX.ConsoleTurnOn);
+                inputs.Gameplay.Cartridge.performed -= OnCartridgePerformed;
+            }
+            else
+            {
+                SFXManager.PlaySound(GlobalSFX.ConsoleTurnOff);
+                inputs.Gameplay.Cartridge.performed += OnCartridgePerformed;
+            }
+        }
 
         onPoweredStateChanged?.Invoke(isOn);
+    }
+
+    private void OnCartridgePerformed(InputAction.CallbackContext obj)
+    {
+        if (isOn)
+            return;
+
+        isCartridgeOut = !isCartridgeOut;
+        SFXManager.PlaySound(GlobalSFX.Cartouche);
+        onCartridgeChanged?.Invoke(isCartridgeOut);
     }
 
     void UpdateScreenMat()

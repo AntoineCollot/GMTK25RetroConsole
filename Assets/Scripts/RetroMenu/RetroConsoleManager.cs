@@ -10,7 +10,7 @@ public class RetroConsoleManager : MonoBehaviour
     [SerializeField] ConsoleLogoAnim consoleLogo;
 
     const float LOGO_TIME = 2.5f;
-    const float MAIN_MENU_ANIM = 1;
+    const float MAIN_MENU_ANIM = 1.5f;
 
     public bool devModeEnabled { get; private set; }
 

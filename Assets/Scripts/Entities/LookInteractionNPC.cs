@@ -7,6 +7,7 @@ public class LookInteractionNPC : MonoBehaviour, IMoveable
 
     [SerializeField] Direction lookDirection;
     public Direction CurrentDirection => lookDirection;
+    public GameObject GO => gameObject;
 
     public event Action<Direction> onMove;
     public event Action<Direction> onLook;
@@ -24,6 +25,7 @@ public class LookInteractionNPC : MonoBehaviour, IMoveable
 
     public void LookDirection(Direction direction)
     {
+        lookDirection = direction;
         onLook?.Invoke(direction);
     }
 }

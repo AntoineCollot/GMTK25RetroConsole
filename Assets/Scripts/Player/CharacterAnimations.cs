@@ -11,7 +11,7 @@ public class CharacterAnimations : MonoBehaviour
     [SerializeField] Sprite idleUp;
     [SerializeField] Sprite moveUp;
 
-    IMoveable moveable;
+    public IMoveable moveable { get;private set; }
     public SpriteRenderer spriteRend { get; private set; }
 
     const float ATTACK_MOVE_TIME = 0.05f;
@@ -119,6 +119,8 @@ public class CharacterAnimations : MonoBehaviour
 
     IEnumerator AttackAnim()
     {
+        //Move sprite
+        DisplayMoveSprite(moveable.CurrentDirection);
         float t = 0;
         Vector3 direction = moveable.CurrentDirection.ToVector3();
         while (t < 1)
@@ -132,6 +134,8 @@ public class CharacterAnimations : MonoBehaviour
 
         yield return new WaitForSeconds(ATTACK_FREEZE_TIME);
 
+        //Reset sprite
+        LookDirection(moveable.CurrentDirection);
         t = 0;
         while (t < 1)
         {

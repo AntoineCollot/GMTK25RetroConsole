@@ -21,7 +21,7 @@ public class ConsoleToggleOnOff : MonoBehaviour
 
     private void OnPoweredStateChanged(bool isOn)
     {
-        SFXManager.PlaySound(GlobalSFX.ToggleClick);
+        //SFXManager.PlaySound(GlobalSFX.ToggleClick);
         SetState(isOn);
     }
 

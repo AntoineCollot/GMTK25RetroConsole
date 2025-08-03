@@ -24,6 +24,11 @@ public enum GlobalSFX
     GameOver,
     Bonus,
     DevMode,
+    Cartouche,
+    AttackEnemy,
+    BonusPower,
+    MiscHit,
+    DemonLaugh,
 }
 public class SFXManager : MonoBehaviour
 {

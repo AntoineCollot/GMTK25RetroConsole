@@ -8,6 +8,7 @@ public interface IMoveable
     Direction CurrentDirection { get; }
     event Action<Direction> onMove;
     event Action<Direction> onLook;
+    GameObject GO { get; }
 
     void LookDirection(Direction direction);
 }
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour, IMoveable
     public float MoveTime => moveTime;
     Direction currentDirection;
     public Direction CurrentDirection => currentDirection;
+    public GameObject GO => gameObject;
 
     const float MIN_INPUT_MOVEMENT = 0.5f;
 

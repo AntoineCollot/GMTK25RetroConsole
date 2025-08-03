@@ -59,6 +59,7 @@ public class RetroMainMenu : MonoBehaviour
                 SFXManager.PlaySound(GlobalSFX.UIValidate);
                 break;
         }
+        SFXManager.PlaySound(GlobalSFX.UIValidate);
     }
 
     private void Clear()

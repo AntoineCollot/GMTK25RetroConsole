@@ -17,7 +17,7 @@ public class Bonus : MonoBehaviour
     private void OnDestroy()
     {
         if (PlayerState.Instance != null)
-            PlayerState.Instance.onPlayerPositionChanged += OnPlayerPositionChanged;
+            PlayerState.Instance.onPlayerPositionChanged -= OnPlayerPositionChanged;
     }
 
     private void OnPlayerPositionChanged(Vector2Int pos)
@@ -31,11 +31,16 @@ public class Bonus : MonoBehaviour
         PlayerState.Instance.onPlayerPositionChanged -= OnPlayerPositionChanged;
 
         if (type == Type.Heal)
+        {
             PlayerState.Instance.AddHP(amount);
+            SFXManager.PlaySound(GlobalSFX.Bonus);
+        }
         else
+        {
             PlayerState.Instance.AddStr(amount);
+            SFXManager.PlaySound(GlobalSFX.BonusPower);
+        }
 
-        SFXManager.PlaySound(GlobalSFX.Bonus);
 
         Destroy(gameObject);
     }

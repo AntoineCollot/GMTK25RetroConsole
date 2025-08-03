@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_7
+      name: Dead
       rect:
         serializedVersion: 2
         x: 48
@@ -1746,7 +1746,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1791,7 +1791,7 @@ TextureImporter:
       CaveT: -2120274284
       CaveTL: -1396705637
       CaveTR: 2113733736
-      Environment_7: -578527036
+      Dead: -578527036
       Environment_8: 1588327547
       FinalB: -162939528
       FinalBL: -1874407099

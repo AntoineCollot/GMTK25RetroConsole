@@ -13,33 +13,47 @@ MonoBehaviour:
   m_Name: SFXBank
   m_EditorClassIdentifier: 
   clips:
+  - {fileID: 8300000, guid: 958c7077efa0ecd46ac14c5a946cd1d9, type: 3}
+  - {fileID: 8300000, guid: 27b0986b82870e24798e2ef38402d09a, type: 3}
+  - {fileID: 8300000, guid: 9520bffafc06bdb4b935e40d088a65b5, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: b0d2c43464764214296a75cb456acca7, type: 3}
   - {fileID: 8300000, guid: a1cff62f16f4f7d40b8e67021d29917a, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 6f3b0e38fb4a978419377f859998e132, type: 3}
+  - {fileID: 8300000, guid: 0fef4708788daf34abf9b2a0c9f2d7c0, type: 3}
+  - {fileID: 8300000, guid: 6c8826fa239dac845aa74286cba800c0, type: 3}
+  - {fileID: 8300000, guid: 60ee48af161b6664e8fd67a6b1492ad9, type: 3}
+  - {fileID: 8300000, guid: bebc0cf1830dc4d4da0e4e6376e9b3cd, type: 3}
+  - {fileID: 8300000, guid: d7e15b4292a0b3d4ea951eb7fb4288e1, type: 3}
+  - {fileID: 8300000, guid: 133f18db9675ebd4eb915429621385a5, type: 3}
+  - {fileID: 8300000, guid: 57c80049ceaac4941ac3dcc294da4436, type: 3}
+  - {fileID: 8300000, guid: fb2bb37d37b0c6242b0fbc6610ca0126, type: 3}
+  - {fileID: 8300000, guid: e95a4b7ec33e6b94e958819d5d1e6c9b, type: 3}
+  - {fileID: 8300000, guid: 2898e035f58a332439c1b76382027db5, type: 3}
+  - {fileID: 8300000, guid: 3e6186013fb4114419e669d257c8f1d6, type: 3}
+  - {fileID: 8300000, guid: 1cfa4cd0c24155d4195b3ae73666f4fb, type: 3}
+  - {fileID: 8300000, guid: b4b9a423a03b9cf4daff94b9d073ff8d, type: 3}
+  - {fileID: 8300000, guid: dc1fd78eaab6383428a1cbf23cf8e45f, type: 3}
+  - {fileID: 8300000, guid: c8e903f0b73cbe343a19a0bb40a0718e, type: 3}
   volumes:
+  - 0.336
+  - 0.411
   - 0.5
   - 0.5
   - 0.5
   - 0.5
+  - 0.316
+  - 0.298
+  - 0.762
   - 0.5
   - 0.5
+  - 0.267
+  - 0.751
+  - 0.5
+  - 0.333
   - 0.5
   - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
+  - 0.29
   - 0.5
   - 0.5
   - 0.5

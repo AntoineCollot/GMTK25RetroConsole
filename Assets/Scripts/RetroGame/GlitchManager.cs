@@ -78,6 +78,11 @@ public class GlitchManager : MonoBehaviour
         MusicManager.Instance.Stop();
     }
 
+    public void RefreshGlitchTime()
+    {
+        elapsedTime01 = 0;
+    }
+
 #if UNITY_EDITOR
     private void OnGUI()
     {

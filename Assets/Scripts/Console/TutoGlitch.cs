@@ -17,13 +17,13 @@ public class TutoGlitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GlitchManager.Instance != null)
+        if (GlitchManager.Instance != null)
         {
             if (GlitchManager.Instance.HasCrashed)
                 Show(true);
         }
 
-        if(isDisplayed && !RealConsole.Instance.isOn)
+        if (isDisplayed && !RealConsole.Instance.isOn)
         {
             Show(false);
         }
@@ -36,6 +36,8 @@ public class TutoGlitch : MonoBehaviour
 
         isDisplayed = value;
         tuto.SetActive(value);
+        if (value)
+            hasBeenSeen = true;
 
         if (hasBeenSeen && !value)
             enabled = false;

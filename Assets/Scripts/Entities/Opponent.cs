@@ -52,6 +52,7 @@ public class Opponent : MonoBehaviour, IDualable
             MusicManager.Instance.EnqueueTheme(Theme.Combat);
 
         Invoke("StartDuel", detectFreezeTime);
+        SFXManager.PlaySound(GlobalSFX.Detected);
     }
 
     protected void StartDuel()

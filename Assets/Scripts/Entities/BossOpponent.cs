@@ -26,6 +26,7 @@ public class BossOpponent : Opponent, IDualable
         MusicManager.Instance.EnqueueTheme(battleTheme);
 
         StartCoroutine(PreDuelAnim());
+        SFXManager.PlaySound(GlobalSFX.Detected);
     }
 
     IEnumerator PreDuelAnim()

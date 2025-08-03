@@ -5,6 +5,7 @@ public class DuelManager : MonoBehaviour
 {
     [SerializeField] SpriteRenderer duelBackground;
     [SerializeField] GameObject smokePrefab;
+    [SerializeField] GameObject hitPrefab;
 
     public bool isInDuel { get; private set; }
     public Opponent currentOpponent { get; private set; }
@@ -80,6 +81,8 @@ public class DuelManager : MonoBehaviour
             currentOpponent.TakeDamages(damages, out someoneDied);
             ScreenShakeSimple.Instance.Shake(damages * 0.25f);
             firstAttack = false;
+            SFXManager.PlaySound(GlobalSFX.Attack);
+            Instantiate(hitPrefab, currentOpponent.transform.position, Quaternion.identity, null);
 
             //Kill opponent - Victory
             if (someoneDied)
@@ -90,6 +93,8 @@ public class DuelManager : MonoBehaviour
                 //Victory music
                 MusicManager.Instance.EnqueueTheme(Theme.Victory);
                 MusicManager.Instance.EnqueueLastAreaTheme();
+
+                SFXManager.PlaySound(GlobalSFX.Kill);
             }
 
             if (!someoneDied)
@@ -103,14 +108,18 @@ public class DuelManager : MonoBehaviour
                 damages = currentOpponent.Strength;
                 PlayerState.Instance.TakeDamages(damages, out someoneDied);
                 ScreenShakeSimple.Instance.Shake(damages * 0.25f);
+                SFXManager.PlaySound(GlobalSFX.AttackEnemy);
+                Instantiate(hitPrefab, PlayerState.Instance.transform.position, Quaternion.identity, null);
 
                 //Defeat
-                if(someoneDied)
+                if (someoneDied)
                 {
                     RetroGameManager.Instance.GameOver();
                     Instantiate(smokePrefab, PlayerState.Instance.transform.position, Quaternion.identity, null);
 
                     PlayerState.Instance.gameObject.SetActive(false);
+
+                    SFXManager.PlaySound(GlobalSFX.GameOver);
 
                     //Don't out of duel
                     yield break;

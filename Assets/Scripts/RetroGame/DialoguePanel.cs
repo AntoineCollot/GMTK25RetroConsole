@@ -86,6 +86,8 @@ public class DialoguePanel : MonoBehaviour
     {
         string line = linesToDisplay.Dequeue();
         StartCoroutine(Typewritting(line));
+
+        SFXManager.PlaySound(GlobalSFX.NextDialogue);
     }
 
     IEnumerator Typewritting(string str)
@@ -143,6 +145,7 @@ public class DialoguePanel : MonoBehaviour
         if (!isOpen)
             return;
         ForceClose();
+        SFXManager.PlaySound(GlobalSFX.NextDialogue);
     }
 
     void ForceClose()
