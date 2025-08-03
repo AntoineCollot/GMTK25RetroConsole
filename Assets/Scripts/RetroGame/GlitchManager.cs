@@ -16,6 +16,7 @@ public class GlitchManager : MonoBehaviour
     const string GLITCH_VAR_NAME = "_GlitchAmount";
     int glitchVarID;
 
+    static float lastGlitch01;
     public static GlitchManager Instance;
 
     public float VisualGlitchAmount
@@ -41,6 +42,8 @@ public class GlitchManager : MonoBehaviour
     private void Start()
     {
         ppGlitchMat.SetFloat(glitchVarID, 0);
+        elapsedTime01 = lastGlitch01;
+        lastGlitch01 = 0;
     }
 
     private void OnDestroy()
@@ -81,6 +84,16 @@ public class GlitchManager : MonoBehaviour
     public void RefreshGlitchTime()
     {
         elapsedTime01 = 0;
+    }
+
+    public void RegisterLastGlitch()
+    {
+        lastGlitch01 = elapsedTime01;
+    }
+
+    public static void ClearLastGlitch()
+    {
+        lastGlitch01 = 0;
     }
 
 #if UNITY_EDITOR

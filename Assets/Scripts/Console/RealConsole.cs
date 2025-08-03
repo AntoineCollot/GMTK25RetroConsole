@@ -112,6 +112,7 @@ public class RealConsole : MonoBehaviour
 
         if (Time.time > 0.5f)
         {
+            GlitchManager.ClearLastGlitch();
             if (isOn)
             {
                 SFXManager.PlaySound(GlobalSFX.ConsoleTurnOn);

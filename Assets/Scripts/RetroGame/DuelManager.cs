@@ -31,7 +31,7 @@ public class DuelManager : MonoBehaviour
 
     public void StartDuel(Opponent opponent)
     {
-        if (isInDuel)
+        if (isInDuel || !RetroGameManager.Instance.GameIsPlaying)
             return;
 
         isInDuel = true;
@@ -63,7 +63,8 @@ public class DuelManager : MonoBehaviour
             yield return null;
         }
 
-        StartCoroutine(Fight());
+        if (RetroGameManager.Instance.GameIsPlaying)
+            StartCoroutine(Fight());
     }
 
     IEnumerator Fight()

@@ -12,6 +12,8 @@ public class StartCutscene : MonoBehaviour
     const string ORIGIN_PROPERTY = "_Origin";
 
     bool hasBeenTriggered;
+    bool hasFinished;
+    bool hasBeenCanceled;
 
     [Header("Settings")]
     [SerializeField] Vector2Int[] triggerCells;
@@ -26,6 +28,7 @@ public class StartCutscene : MonoBehaviour
     [SerializeField] GameObject ritualScene;
     [SerializeField] GameObject destroyedScene;
     [SerializeField] CharacterAnimations mainMage;
+    [SerializeField] GameObject idleGirl;
 
     CompositeStateToken freezePlayerToken;
 
@@ -33,15 +36,18 @@ public class StartCutscene : MonoBehaviour
     void Start()
     {
         freezePlayerToken = new CompositeStateToken();
+        hasBeenCanceled = false;
 
         if (RetroGameManager.loadedCode == 0)
             StartCoroutine(StartAnim());
+        else
+            Cancel();
     }
 
     private void Update()
     {
-        if (hasBeenTriggered && GlitchManager.Instance.HasCrashed)
-            StopAllCoroutines();
+        if (GlitchManager.Instance.HasCrashed)
+            Cancel();
     }
 
     private void OnDestroy()
@@ -49,6 +55,19 @@ public class StartCutscene : MonoBehaviour
         if (PlayerState.Instance != null)
         {
             PlayerState.Instance.freezeGameplayInputState.Remove(freezePlayerToken);
+            PlayerState.Instance.onPlayerPositionChanged -= OnPlayerPos;
+        }
+    }
+
+    public void Cancel()
+    {
+        hasBeenCanceled = true;
+        StopAllCoroutines();
+        if (!hasFinished)
+        {
+            ritualScene.SetActive(false);
+            destroyedScene.SetActive(false);
+            idleGirl.SetActive(true);
             PlayerState.Instance.onPlayerPositionChanged -= OnPlayerPos;
         }
     }
@@ -62,6 +81,8 @@ public class StartCutscene : MonoBehaviour
         PlayerState.Instance.freezeGameplayInputState.Add(freezePlayerToken);
         freezePlayerToken.SetOn(true);
         hasBeenTriggered = false;
+        hasFinished = false;
+        idleGirl.SetActive(false);
         background.gameObject.SetActive(true);
         playerAnimations.SetSortingLayerAsDuel();
 
@@ -97,7 +118,7 @@ public class StartCutscene : MonoBehaviour
         DialoguePanel.Instance.DisplayLines("Ah, we are all here. The ritual can begin!",
             "Every 10 years, the Demon awakens",
             "We must banish him with our combined powers",
-            "This cycle has been going for centuries to keep the world at peace",
+            "This cycle has been going for ages to keep the world at peace",
             "...He is coming, get rea...WHAT ?");
         //Wait dialogue
         while (DialoguePanel.Instance.isOpen)
@@ -165,11 +186,13 @@ public class StartCutscene : MonoBehaviour
         DialoguePanel.Instance.DisplayLines("Thanks god you are alive!",
             "Dajus And the Demon killed everyone!",
             "You must find and destroy them!");
+
+        hasFinished = true;
     }
 
     private void OnPlayerPos(Vector2Int playerPos)
     {
-        if (hasBeenTriggered)
+        if (hasBeenTriggered || !RetroGameManager.Instance.GameIsPlaying || hasBeenCanceled)
             return;
         if (triggerCells.Contains(playerPos))
         {

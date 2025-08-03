@@ -72,6 +72,7 @@ public class StartMenu : MonoBehaviour
             //Load main menu
             RetroConsoleManager.Instance.OpenInterface(false);
             SFXManager.PlaySound(GlobalSFX.UIValidate);
+            GlitchManager.Instance.RegisterLastGlitch();
         }
     }
 }
