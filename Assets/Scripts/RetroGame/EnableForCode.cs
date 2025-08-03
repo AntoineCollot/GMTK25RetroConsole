@@ -1,11 +1,17 @@
+using System.Linq;
 using UnityEngine;
 
 public class EnableForCode : MonoBehaviour
 {
-    [SerializeField] int code;
+    [SerializeField] int[] codes;
+
+    private void Start()
+    {
+        OnCodeLoaded(RetroGameManager.loadedCode);
+    }
 
     public void OnCodeLoaded(int loadedCode)
     {
-        gameObject.SetActive(code == loadedCode);
+        gameObject.SetActive(codes.Contains(loadedCode));
     }
 }

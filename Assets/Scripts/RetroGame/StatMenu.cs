@@ -25,17 +25,24 @@ public class StatMenu : MonoBehaviour
         isOn = startMenu.isOn || isInDuel;
         panel.SetActive(isOn);
 
-        if(isOn)
+        if (isOn)
         {
-            playerHPText.text = PlayerState.Instance.CurrentHP.ToString("00");
+            if (PlayerState.Instance.CurrentHP > 0)
+                playerHPText.text = PlayerState.Instance.CurrentHP.ToString("00");
+            else
+                playerHPText.text = "XX";
             playerStrText.text = PlayerState.Instance.Strength.ToString("00");
         }
 
         opponentStats.SetActive(isInDuel);
 
-        if(isInDuel)
+        if (isInDuel)
         {
-            opponentHPText.text = DuelManager.Instance.currentOpponent.CurrentHP.ToString("00");
+            int hp = DuelManager.Instance.currentOpponent.CurrentHP;
+            if (hp > 0)
+                opponentHPText.text = hp.ToString("00");
+            else
+                opponentHPText.text = "XX";
             opponentStrText.text = DuelManager.Instance.currentOpponent.Strength.ToString("00");
         }
     }

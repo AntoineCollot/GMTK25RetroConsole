@@ -12,15 +12,24 @@ public class RetroConsoleManager : MonoBehaviour
     const float LOGO_TIME = 2.5f;
     const float MAIN_MENU_ANIM = 1;
 
+    public bool devModeEnabled { get; private set; }
+
     [Header("DEBUG")]
     [SerializeField] int debugCode;
-    [SerializeField] bool autoStart;
+    [SerializeField] bool debugAutoStart;
+    [SerializeField] bool debugEnableDevMode;
+
+    public static RetroConsoleManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        LoadMainMenu();
-
         RealConsole.Instance.onPoweredStateChanged += OnConsolePoweredChanged;
+        CloseInterface();
 
 #if UNITY_EDITOR
         DebugAutoStart();
@@ -29,7 +38,7 @@ public class RetroConsoleManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(RealConsole.Instance!=null)
+        if (RealConsole.Instance != null)
         {
             RealConsole.Instance.onPoweredStateChanged -= OnConsolePoweredChanged;
         }
@@ -37,17 +46,19 @@ public class RetroConsoleManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
 #if UNITY_EDITOR
     void DebugAutoStart()
     {
-        if(autoStart)
+        if (debugAutoStart)
         {
             RetroGameManager.loadedCode = debugCode;
             SceneLoader.LoadRetroGame();
             CloseInterface();
+            if (debugEnableDevMode)
+                devModeEnabled = true;
         }
     }
 #endif
@@ -101,10 +112,17 @@ public class RetroConsoleManager : MonoBehaviour
     {
         CloseInterface();
         SceneLoader.UnloadRetroGame();
+        devModeEnabled = false;
+        MusicManager.Instance.Stop();
     }
 
     private void OnConsolePoweredChanged(bool isOn)
     {
+#if UNITY_EDITOR
+        if (debugAutoStart && Time.time < 1)
+            return;
+#endif
+
         if (isOn)
             OpenInterface(true);
         else
@@ -114,6 +132,7 @@ public class RetroConsoleManager : MonoBehaviour
     IEnumerator BootAnim(bool displayLogo)
     {
         CloseAll();
+        devModeEnabled = false;
 
         yield return null;
 
@@ -124,6 +143,14 @@ public class RetroConsoleManager : MonoBehaviour
             consoleLogo.gameObject.SetActive(false);
         }
 
+        //Dev mode
+        if (MenuInputs.DevModePressed)
+        {
+            devModeEnabled = true;
+            SFXManager.PlaySound(GlobalSFX.DevMode);
+        }
+
+        MusicManager.Instance.EnqueueTheme(Theme.MainTheme);
         mainMenuArtwork.SetActive(true);
         yield return new WaitForSeconds(MAIN_MENU_ANIM);
 

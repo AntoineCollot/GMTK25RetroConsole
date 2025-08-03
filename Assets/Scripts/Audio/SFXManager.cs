@@ -23,6 +23,7 @@ public enum GlobalSFX
     Kill,
     GameOver,
     Bonus,
+    DevMode,
 }
 public class SFXManager : MonoBehaviour
 {

@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour, IMoveable
         LookDirection(direction);
 
         //Check if possible to move there
-        if (!GameGrid.IsWalkable(gridPos + direction.ToVector()))
+        if (!RetroConsoleManager.Instance.devModeEnabled && !GameGrid.IsWalkable(gridPos + direction.ToVector()))
         {
             return;
         }

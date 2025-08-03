@@ -89,6 +89,7 @@ public class RetroMainMenu : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+        MusicManager.Instance.EnqueueTheme(Theme.MainTheme);
     }
 
     public void Close()

@@ -1505,8 +1505,9 @@ MonoBehaviour:
   retroMainMenu: {fileID: 1776425162}
   loadCodeMenu: {fileID: 438634130}
   consoleLogo: {fileID: 812234287}
-  debugCode: -1
-  autoStart: 1
+  debugCode: 5241
+  debugAutoStart: 0
+  debugEnableDevMode: 0
 --- !u!4 &1717199279
 Transform:
   m_ObjectHideFlags: 0
@@ -1538,20 +1539,28 @@ MonoBehaviour:
   codePoints:
   - code: 0
     gridPos: {x: 0, y: 0}
+    areaTheme: 2
   - code: 2213
     gridPos: {x: -3, y: -10}
+    areaTheme: 2
   - code: 1402
     gridPos: {x: 12, y: -23}
+    areaTheme: 2
   - code: 2105
     gridPos: {x: 20, y: -21}
+    areaTheme: 2
   - code: 4550
     gridPos: {x: 30, y: 11}
+    areaTheme: 2
   - code: 4034
     gridPos: {x: -32, y: 28}
+    areaTheme: 2
   - code: 911
     gridPos: {x: -33, y: 58}
+    areaTheme: 5
   - code: 5241
-    gridPos: {x: -33, y: 58}
+    gridPos: {x: -49, y: -2}
+    areaTheme: 7
 --- !u!1 &1776425160
 GameObject:
   m_ObjectHideFlags: 0

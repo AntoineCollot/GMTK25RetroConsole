@@ -7,6 +7,7 @@ public static class MenuInputs
 
     public static bool AIsPressed => inputMap.Gameplay.A.IsPressed();
     public static bool BIsPressed => inputMap.Gameplay.B.IsPressed();
+    public static bool DevModePressed => inputMap.Gameplay.B.IsPressed() && inputMap.Gameplay.Start.IsPressed();
     public static Action OnAPressed;
     public static Action OnBPressed;
     public static Vector2 Crosspad => inputMap.Gameplay.Move.ReadValue<Vector2>();

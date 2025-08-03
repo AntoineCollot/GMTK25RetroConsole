@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class CaveEntry : MonoBehaviour
@@ -10,12 +11,16 @@ public class CaveEntry : MonoBehaviour
     [SerializeField] float fadeTime;
     const string PROPERTY_NAME = "_Threshold";
 
+    [SerializeField] int openForCode;
+
     void Start()
     {
         isOpen = false;
         PlayerState.Instance.onPlayerPositionChanged += OnPlayerPositionChanged;
         gridPos = GameGrid.WordPosToGrid(transform.position);
         roofMat.SetFloat(PROPERTY_NAME, 0);
+
+        OpenForCodeLoaded(RetroGameManager.loadedCode);
     }
 
     private void OnDestroy()
@@ -39,6 +44,13 @@ public class CaveEntry : MonoBehaviour
     {
         isOpen = true;
         StartCoroutine(Fade());
+        MusicManager.Instance.EnqueueTheme(Theme.Cave);
+    }
+
+    public void OpenForCodeLoaded(int loadedCode)
+    {
+        if (openForCode == loadedCode)
+            Open();
     }
 
     IEnumerator Fade()

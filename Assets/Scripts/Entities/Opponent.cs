@@ -7,27 +7,27 @@ using UnityEditor;
 public class Opponent : MonoBehaviour, IDualable
 {
     [Header("Components")]
-    [SerializeField] GameObject detectFX;
-    CharacterAnimations characterAnimations;
+    [SerializeField] protected GameObject detectFX;
+    protected CharacterAnimations characterAnimations;
 
     [Header("Settings")]
-    [SerializeField] float detectFreezeTime = 1;
+    [SerializeField] protected float detectFreezeTime = 1;
 
     [Header("Stats")]
-    [SerializeField] int baseHP = 3;
-    int currentHP;
+    [SerializeField] protected int baseHP = 3;
+    protected int currentHP;
     public int CurrentHP => currentHP;
-    [SerializeField] int strength = 1;
+    [SerializeField] protected int strength = 1;
     public int Strength => strength;
     public bool isTough = false;
 
-    CompositeStateToken freezePlayerToken;
+    protected CompositeStateToken freezePlayerToken;
 
     public Vector2 Position => transform.position;
     public Vector2Int GridPos => GameGrid.WordPosToGrid(transform.position);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected void Start()
     {
         freezePlayerToken = new CompositeStateToken();
         characterAnimations = GetComponentInChildren<CharacterAnimations>();
@@ -35,20 +35,26 @@ public class Opponent : MonoBehaviour, IDualable
         currentHP = baseHP;
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
     }
 
-    public void OnPlayerDetected(Vector2Int playerPosition)
+    public virtual void OnPlayerDetected(Vector2Int playerPosition)
     {
         PlayerState.Instance.freezeGameplayInputState.Add(freezePlayerToken);
         freezePlayerToken.SetOn(true);
         detectFX.SetActive(true);
 
+        //Music
+        if (isTough)
+            MusicManager.Instance.EnqueueTheme(Theme.CombatBoss);
+        else
+            MusicManager.Instance.EnqueueTheme(Theme.Combat);
+
         Invoke("StartDuel", detectFreezeTime);
     }
 
-    void StartDuel()
+    protected void StartDuel()
     {
         detectFX.SetActive(false);
         characterAnimations.SetSortingLayerAsDuel();
@@ -80,7 +86,7 @@ public class Opponent : MonoBehaviour, IDualable
             die = true;
     }
 
-    public void Die()
+    public virtual void Die()
     {
         //Legacy, happens in duel manager directly
         gameObject.SetActive(false);
@@ -93,7 +99,7 @@ public class Opponent : MonoBehaviour, IDualable
 
         //player attacks first
         hp -= PlayerState.BASE_STRENGTH;
-        while(hp>0)
+        while (hp > 0)
         {
             damageDealt += strength;
             hp -= PlayerState.BASE_STRENGTH;
@@ -111,7 +117,7 @@ public interface IDualable
 }
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(Opponent))]
+[CustomEditor(typeof(Opponent),true)]
 public class OpponentEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -119,7 +125,7 @@ public class OpponentEditor : Editor
         Opponent opponent = (Opponent)target;
         EditorGUILayout.Space(20);
         DrawDefaultInspector();
-        EditorGUILayout.LabelField("Total Damages To Player :"+ opponent.EvaluateDamagesToPlayer());
+        EditorGUILayout.LabelField("Total Damages To Player :" + opponent.EvaluateDamagesToPlayer());
     }
 }
 #endif

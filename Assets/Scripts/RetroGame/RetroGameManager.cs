@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -37,16 +38,21 @@ public class RetroGameManager : MonoBehaviour
         if (gameHasStarted)
             return;
 
+        Theme areaTheme = Theme.Adventure;
         if(loadCode && loadedCode>=0)
         {
-            Vector3 spawnPos = CodePointDatabase.Instance.GetSpawnForCode(loadedCode);
+            Vector3 spawnPos = CodePointDatabase.Instance.GetSpawnForCode(loadedCode, out areaTheme);
             PlayerMovement player = FindAnyObjectByType<PlayerMovement>();
             player.TeleportAtPos(GameGrid.WordPosToGrid(spawnPos));
             onCodeLoaded.Invoke(loadedCode);
         }
+        MusicManager.Instance.EnqueueTheme(areaTheme);
 
         gameHasStarted = true;
         onGameStart.Invoke();
+
+        if (RetroConsoleManager.Instance.devModeEnabled)
+            DialoguePanel.Instance.DisplayLines("Dev Mode Enabled!");
     }
 
     public void GameOver()
@@ -55,6 +61,8 @@ public class RetroGameManager : MonoBehaviour
             return;
         gameIsOver = true;
         onGameOver.Invoke();
+
+        MusicManager.Instance.EnqueueTheme(Theme.Defeat);
     }
 
     public void WinGame()

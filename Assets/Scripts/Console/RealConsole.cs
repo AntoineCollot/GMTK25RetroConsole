@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,7 +31,7 @@ public class RealConsole : MonoBehaviour
 
     void Start()
     {
-        ToggleOnOff();
+        StartCoroutine(FirstBoot());
     }
 
     private void OnEnable()
@@ -59,6 +60,12 @@ public class RealConsole : MonoBehaviour
     void Update()
     {
 
+    }
+
+    IEnumerator FirstBoot()
+    {
+        yield return null;
+        ToggleOnOff();
     }
 
     private void OnToggleOnOffPerformed(InputAction.CallbackContext context)

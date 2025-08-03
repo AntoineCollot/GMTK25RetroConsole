@@ -71,7 +71,7 @@ public class DuelManager : MonoBehaviour
         int damages;
         bool firstAttack = true;
 
-        while (!someoneDied)
+        while (!someoneDied && RetroGameManager.Instance.GameIsPlaying)
         {
             if (!firstAttack)
                 yield return new WaitForSeconds(ATTACK_INTERVAL_TIME);
@@ -81,20 +81,40 @@ public class DuelManager : MonoBehaviour
             ScreenShakeSimple.Instance.Shake(damages * 0.25f);
             firstAttack = false;
 
-            //Kill opponent
+            //Kill opponent - Victory
             if (someoneDied)
             {
                 Instantiate(smokePrefab, currentOpponent.transform.position, Quaternion.identity, null);
                 currentOpponent.Die();
+
+                //Victory music
+                MusicManager.Instance.EnqueueTheme(Theme.Victory);
+                MusicManager.Instance.EnqueueLastAreaTheme();
             }
 
             if (!someoneDied)
             {
                 yield return new WaitForSeconds(ATTACK_INTERVAL_TIME);
+
+                if (!RetroGameManager.Instance.GameIsPlaying)
+                    yield break;
+
                 currentOpponent.Attack();
                 damages = currentOpponent.Strength;
                 PlayerState.Instance.TakeDamages(damages, out someoneDied);
                 ScreenShakeSimple.Instance.Shake(damages * 0.25f);
+
+                //Defeat
+                if(someoneDied)
+                {
+                    RetroGameManager.Instance.GameOver();
+                    Instantiate(smokePrefab, PlayerState.Instance.transform.position, Quaternion.identity, null);
+
+                    PlayerState.Instance.gameObject.SetActive(false);
+
+                    //Don't out of duel
+                    yield break;
+                }
             }
         }
 

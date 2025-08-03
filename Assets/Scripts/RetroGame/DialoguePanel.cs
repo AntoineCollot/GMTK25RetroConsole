@@ -14,9 +14,11 @@ public class DialoguePanel : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] float characterTime;
+    float overridedCharacterTime;
+    bool useOverridedCharacterTime = false;
 
     Queue<string> linesToDisplay;
-    bool isOpen;
+    public bool isOpen { get; private set; }
 
     public static DialoguePanel Instance;
 
@@ -40,7 +42,7 @@ public class DialoguePanel : MonoBehaviour
 
     private void Update()
     {
-        if(isOpen && !RetroGameManager.Instance.GameIsPlaying)
+        if (isOpen && !RetroGameManager.Instance.GameIsPlaying)
         {
             Close();
         }
@@ -63,12 +65,21 @@ public class DialoguePanel : MonoBehaviour
 
     public void DisplayLines(params string[] lines)
     {
+        useOverridedCharacterTime = false;
         Open();
         foreach (string line in lines)
         {
             linesToDisplay.Enqueue(line);
         }
         DisplayNext();
+    }
+
+    public void DisplayLinesWithCharacterTime(string[] lines, float overrideCharacterTime)
+    {
+        DisplayLines(lines);
+
+        useOverridedCharacterTime = true;
+        this.overridedCharacterTime = overrideCharacterTime;
     }
 
     void DisplayNext()
@@ -87,7 +98,11 @@ public class DialoguePanel : MonoBehaviour
         for (int i = 0; i <= charCount; i++)
         {
             text.maxVisibleCharacters = i;
-            nextCharacterTime += characterTime;
+
+            if (useOverridedCharacterTime)
+                nextCharacterTime += overridedCharacterTime;
+            else
+                nextCharacterTime += characterTime;
 
             while (elapsedTime < nextCharacterTime)
             {

@@ -23,13 +23,15 @@ public class CodePointDatabase : MonoBehaviour
         return codePoints.Any(c => c.code == code);
     }
 
-    public Vector3 GetSpawnForCode(int code)
+    public Vector3 GetSpawnForCode(int code, out Theme areaTheme)
     {
+        areaTheme = Theme.None;
         Vector3 spawnPos = GameGrid.GridToWorldPos(codePoints[0].gridPos);
         if (HasCode(code))
         {
             CodePoint selectedPoint = codePoints.First(c => c.code == code);
             spawnPos = GameGrid.GridToWorldPos(selectedPoint.gridPos);
+            areaTheme = selectedPoint.areaTheme;
         }
         return spawnPos;
     }
@@ -58,4 +60,5 @@ public struct CodePoint
 {
     public int code;
     public Vector2Int gridPos;
+    public Theme areaTheme;
 }

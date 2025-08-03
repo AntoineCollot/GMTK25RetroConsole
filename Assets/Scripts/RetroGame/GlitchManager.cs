@@ -16,6 +16,8 @@ public class GlitchManager : MonoBehaviour
     const string GLITCH_VAR_NAME = "_GlitchAmount";
     int glitchVarID;
 
+    public static GlitchManager Instance;
+
     public float VisualGlitchAmount
     {
         get
@@ -27,10 +29,13 @@ public class GlitchManager : MonoBehaviour
         }
     }
 
+    public bool HasCrashed => elapsedTime01 >= 1;
+
     private void Awake()
     {
         glitchVarID = Shader.PropertyToID(GLITCH_VAR_NAME);
         audioSource =GetComponent<AudioSource>();
+        Instance = this;
     }
 
     private void Start()
@@ -70,6 +75,7 @@ public class GlitchManager : MonoBehaviour
         GlitchRumbleCamera.Instance.ResetCam();
         ppGlitchMat.SetFloat(glitchVarID, 3);
         RetroGameManager.Instance.Crash();
+        MusicManager.Instance.Stop();
     }
 
 #if UNITY_EDITOR

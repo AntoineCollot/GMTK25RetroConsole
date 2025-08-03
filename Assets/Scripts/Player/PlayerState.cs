@@ -20,8 +20,9 @@ public class PlayerState : MonoBehaviour, IDualable
     [SerializeField] int baseHP = 5;
     public const int BASE_STRENGTH = 1;
     int currentHP;
+    int bonusStr;
     public int CurrentHP => currentHP;
-    public int Strength => BASE_STRENGTH;
+    public int Strength => BASE_STRENGTH+ bonusStr;
 
     PlayerMovement movement;
     public event Action<Vector2Int> onPlayerPositionChanged;
@@ -38,6 +39,7 @@ public class PlayerState : MonoBehaviour, IDualable
     {
         movement.onMovementFinished += OnMovementFinished;
         currentHP = baseHP;
+        bonusStr = 0;
     }
 
     private void OnDestroy()
@@ -82,6 +84,11 @@ public class PlayerState : MonoBehaviour, IDualable
     public void AddHP(int amount)
     {
         currentHP+= amount;
+    }
+
+    public void AddStr(int amout)
+    {
+        bonusStr+= amout;
     }
 }
 
